@@ -6,7 +6,9 @@
 def main():
     user_input = input("")
 
-    valid_number = input_valid(user_input)
+    while user_input != 'q':
+        valid_number = input_valid(user_input)
+        user_input = input("")
 
 def input_valid(user_input):
     user_input = user_input.lower()
