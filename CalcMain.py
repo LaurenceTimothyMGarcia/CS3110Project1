@@ -6,7 +6,7 @@
 def main():
     user_input = input("")
 
-    input_valid(user_input)
+    valid_number = input_valid(user_input)
 
 def input_valid(user_input):
     user_input = user_input.lower()
@@ -20,11 +20,15 @@ def input_valid(user_input):
         return
 
     if exp_place != -1:
-        string_split = user_input.split(exp_place)
-        number = string_split[0]
-        exponent = string_split[1]
+        string_split = user_input.split('e')
+        number = float(string_split[0])
+        exponent = float(string_split[1])
 
-    
+        exponent = 10 ** exponent
+        user_input = number * exponent
+
     print(user_input)
+    return user_input
+    
 
 main()
