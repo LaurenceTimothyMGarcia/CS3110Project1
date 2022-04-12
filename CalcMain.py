@@ -3,12 +3,18 @@
 #Professor Dong
 #April 13th, 2022
 
+import json
+
 def main():
     user_input = input("")
 
+    convert_string(user_input)
+
+    '''
     while user_input != 'q':
         valid_number = input_valid(user_input)
         user_input = input("")
+    '''
 
 def input_valid(user_input):
     user_input = user_input.lower()
@@ -31,6 +37,15 @@ def input_valid(user_input):
 
     print(user_input)
     return user_input
+
+def convert_string(string):
+    num_dict = open('NumAlpha.json')
+    translate = json.load(num_dict)
+
+    string = string.lower()
+
     
+
+    num_dict.close()
 
 main()
