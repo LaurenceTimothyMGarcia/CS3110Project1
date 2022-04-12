@@ -43,11 +43,12 @@ def convert_string(string):
     translate = json.load(num_dict)
 
     str_len = len(string)
-    str_pos = 0
-    dec_loc = 0
-    exp_loc = 0
+    str_pos = 0     #Position in String
+    dec_loc = 0     #Position of Decimal
+    exp_loc = 0     #Position of Exponent 'e'
     string = string.lower()
 
+    #Finds location of . and e
     for i in string:
         if i == '.':
             dec_loc = str_pos
@@ -56,6 +57,20 @@ def convert_string(string):
             exp_loc = str_pos
             print(exp_loc)
         str_pos += 1
+
+    new_float = 0
+    for i in string:
+        if str_pos == dec_loc:
+            continue
+
+        if str_pos < dec_loc:
+            pow_10 = dec_loc - str_pos
+            print("Power of 10: " + pow_10)
+            
+            new_float += (translate[i] * (10**pow_10))
+
+        str_pos += 1
+        print(new_float)
 
     num_dict.close()
 
