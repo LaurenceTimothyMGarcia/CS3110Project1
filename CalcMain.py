@@ -42,9 +42,20 @@ def convert_string(string):
     num_dict = open('NumAlpha.json')
     translate = json.load(num_dict)
 
+    str_len = len(string)
+    str_pos = 0
+    dec_loc = 0
+    exp_loc = 0
     string = string.lower()
 
-    
+    for i in string:
+        if i == '.':
+            dec_loc = str_pos
+            print(dec_loc)
+        if i == 'e':
+            exp_loc = str_pos
+            print(exp_loc)
+        str_pos += 1
 
     num_dict.close()
 
