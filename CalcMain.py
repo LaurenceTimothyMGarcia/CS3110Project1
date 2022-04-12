@@ -60,7 +60,7 @@ def convert_string(string):
 
     new_float = 0
     for i in string:
-        if str_pos == dec_loc:
+        if str_pos == '.':
             continue
 
         if str_pos < dec_loc:
@@ -70,6 +70,7 @@ def convert_string(string):
             new_float += (translate[i] * (10**pow_10))
 
         str_pos += 1
+        print(translate[i])
         print(new_float)
 
     num_dict.close()
