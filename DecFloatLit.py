@@ -18,7 +18,9 @@ def dfa_valid(user_input):
 
     user_input = user_input.lower() #changes everything to lower case
     input_len = len(user_input)     #provides length of string
-    char_pos = 0                     #Character position in string
+    char_pos = 0                    #Character position in string
+    dec_pos = user_input.find('.')  #Location of decimal dot
+    dec_check = False                     #Boolean for the decimal dot
 
     for chr in user_input:
         print("Char Pos:", char_pos)
@@ -27,10 +29,22 @@ def dfa_valid(user_input):
         #State 1
         #Checks if first input is either digit or decimal dot
         if char_pos == 0:
+            if chr == 'e':
+                print("Not a valid input")
+                return
             if chr not in translate.keys() and chr != '.':
                 print("Not a valid input")
                 return
-        
+
+        #State 3
+        if chr == '.':
+            if dec_check:
+                print("Not a valid input")
+                return
+            else:
+                dec_check = True
+
+        #if chr == 'e':
 
         
         char_pos += 1
