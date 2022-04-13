@@ -18,6 +18,7 @@ def dfa_valid(user_input):
 
     user_input = user_input.lower() #changes everything to lower case
     input_len = len(user_input)     #provides length of string
+    array_len = input_len - 1       #provides length of string with only numbers starting from 0
     dec_float_point = 0             #Float Point
     pow_10 = 0                      #Power of 10 to multiply by
 
@@ -26,22 +27,25 @@ def dfa_valid(user_input):
     dec_check = False               #Boolean for the decimal dot
 
     exp_pos = user_input.find('e')  #Location of e
+    exp_count = user_input.count('e')
     exp_check = False               #Boolean for e
     exp_float = 0                   #Number of times 10 is multiplied by
 
     space_count = user_input.count("_") #counts number of white spaces
+    f_count = user_input.count("f") #counts f
+    d_count = user_input.count("d") #counts d
 
     if dec_pos == -1 and exp_pos == -1 and (user_input[input_len - 1] != 'f' and user_input[input_len - 1] != 'd'):
         print("Not a valid input")
         return
     
-    if user_input[input_len - 1] == 'e':
+    if user_input[input_len - 1] == 'e' or user_input[input_len - 1] == '_':
         print("Not a valid input")
         return
     
     #Adjusts input length to account for space being removed
-    input_len = input_len - space_count
-    print(input_len)
+    array_len = array_len - (space_count + exp_count + f_count + d_count)
+    print(array_len)
 
     for chr in user_input:
         print("Char Pos:", char_pos)
@@ -81,7 +85,7 @@ def dfa_valid(user_input):
 
         #State 3
         if chr == '.':
-            if dec_pos == (input_len-1):
+            if dec_pos == (array_len):
                 if user_input[char_pos - 1] == '_':
                     print("Not a valid input")
                     return
@@ -100,11 +104,11 @@ def dfa_valid(user_input):
         #State 10
         #Checks for float or double
         if chr == 'f' or chr == 'd':
-            if user_input[char_pos - 1] == '_':
+            if user_input[char_pos] == '_':
                 print("Not a valid input")
                 return
             print("char pos:", char_pos)
-            print("String len:", (input_len - 1))
+            print("String len:", (input_len))
             if char_pos != (input_len - 1):
                 print("Not a valid input")
                 return
@@ -118,23 +122,24 @@ def dfa_valid(user_input):
 
         #If there is no decimal
         if dec_pos == -1:
-            pow_10 = (input_len - 2) - char_pos
+            pow_10 = (array_len) - char_pos
         #State 5
         #Numbers after Decimal
-        elif dec_check and not exp_check:
+        elif char_pos > dec_pos and char_pos < exp_pos:
             pow_10 = dec_pos - char_pos
         #State 2
         #Numbers before decimal
-        elif not dec_check and not exp_check:
+        elif char_pos < dec_pos:
             pow_10 = dec_pos - char_pos - 1
+        
         #State 8
         #Deals with exponent power of 10
         if exp_check:
             pow_10 = input_len - char_pos - 1
-            print(pow_10)
+            print("Power of Exponent:", pow_10)
             exp_float += (translate[chr] * (10 ** pow_10))
             print("E float:", exp_float)
-            if char_pos == (input_len - 1):
+            if char_pos == (array_len):
                 dec_float_point *= (10 ** exp_float)
             char_pos += 1
             continue
