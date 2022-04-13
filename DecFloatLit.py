@@ -30,12 +30,16 @@ def dfa_valid(user_input):
     exp_float = 0                   #Number of times 10 is multiplied by
 
     space_count = user_input.count("_") #counts number of white spaces
-    print(space_count)
 
     if dec_pos == -1 and exp_pos == -1 and (user_input[input_len - 1] != 'f' and user_input[input_len - 1] != 'd'):
         print("Not a valid input")
         return
     
+    if user_input[input_len - 1] == 'e':
+        print("Not a valid input")
+        return
+    
+    #Adjusts input length to account for space being removed
     input_len = input_len - space_count
     print(input_len)
 
@@ -53,8 +57,22 @@ def dfa_valid(user_input):
                 print("Not a valid input")
                 return
         
+        #Checks for underscores
         if chr == "_":
-            continue
+            if user_input[char_pos + 1] != 'e' or user_input[char_pos + 1] != 'f' or user_input[char_pos + 1] != 'd' or user_input[char_pos + 1] != '.':
+                if user_input[char_pos - 1] != 'e' or user_input[char_pos - 1] != 'f' or user_input[char_pos - 1] != 'd' or user_input[char_pos - 1] != '.':
+                    if user_input[char_pos - 1] in translate.keys() and user_input[char_pos + 1] in translate.keys():
+                        continue
+                    else:
+                        print("Not a valid input")
+                        return
+                else:
+                    print("Not a valid input")
+                    return
+            else:
+                print("Not a valid input")
+                return
+            
 
         #State 5
         if chr == 'e':
