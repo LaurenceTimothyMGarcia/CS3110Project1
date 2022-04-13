@@ -47,9 +47,11 @@ def dfa_valid(user_input):
     
     #Adjusts input length to account for space being removed
     print()
+    print("Space Count:", space_count)
     print("Neg Count:", neg_count)
     print("E Count:", exp_count)
     difference = space_count + exp_count + f_count + d_count + neg_count
+    dec_pos -= space_count
     array_len = array_len - difference
     print("Size of String:", array_len)
 
@@ -71,6 +73,7 @@ def dfa_valid(user_input):
         #Checks for underscores
         if chr == "_":
             char_pos += 1
+            dec_pos += 1
             continue
         
         if chr == "-":
@@ -99,10 +102,14 @@ def dfa_valid(user_input):
                 continue
 
         #State 3
+        #Deals with Decimal State
         if chr == '.':
             if array_len <= 0:
                 print("Not a valid input")
                 return
+            print("Dec_Pos:", dec_pos)
+            print("Array Len:", array_len)
+            '''
             if dec_pos == (array_len):
                 if user_input[char_pos - 1] == '_':
                     print("Not a valid input")
@@ -111,6 +118,7 @@ def dfa_valid(user_input):
                 if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
                     print("Not a valid input")
                     return
+            '''
 
             if dec_check:
                 print("Not a valid input")
@@ -123,7 +131,7 @@ def dfa_valid(user_input):
         #State 10
         #Checks for float or double
         if chr == 'f' or chr == 'd':
-            if user_input[char_pos] == '_':
+            if user_input[char_pos - 1] == '_':
                 print("Not a valid input")
                 return
             print("char pos:", char_pos)
