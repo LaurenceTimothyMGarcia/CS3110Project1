@@ -29,11 +29,9 @@ def dfa_valid(user_input):
     exp_check = False               #Boolean for e
     exp_float = 0                   #Number of times 10 is multiplied by
 
-    f_pos = user_input.find('f')    #Location of f
-    d_pos = user_input.find('d')    #Location of d
     f_check = False                 #Checks for f or d
 
-    if dec_pos == -1 and exp_pos == -1 and (f_pos == -1 or d_pos == -1):
+    if dec_pos == -1 and exp_pos == -1 and (user_input[input_len - 1] != 'f' and user_input[input_len - 1] != 'd'):
         print("Not a valid input")
         return
 
@@ -71,6 +69,17 @@ def dfa_valid(user_input):
                 dec_check = True
                 continue
         
+        #State 6
+        #Checks for float or double
+        if chr == 'f' or chr == 'd':
+            print("char pos:", char_pos)
+            print("String len:", (input_len - 1))
+            if char_pos != (input_len - 1):
+                print("Not a valid input")
+                return
+            else:
+                continue
+
         #Trash State
         if chr not in translate.keys():
             print("Not a valid input")
@@ -95,7 +104,6 @@ def dfa_valid(user_input):
                 dec_float_point *= (10 ** exp_float)
             char_pos += 1
             continue
-        
         
 
         dec_float_point += (translate[chr] * (10 ** pow_10))
