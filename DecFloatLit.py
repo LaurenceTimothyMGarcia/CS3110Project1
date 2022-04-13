@@ -165,7 +165,7 @@ def dfa_valid(user_input):
 
         #If there is no decimal
         if dec_pos == -1:
-            pow_10 = (array_len - difference) - char_pos
+            pow_10 = (array_len - exp_count) - char_pos
         #State 5
         #Numbers after Decimal
         elif dec_check == True:
