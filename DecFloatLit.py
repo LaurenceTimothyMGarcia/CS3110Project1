@@ -80,8 +80,10 @@ def dfa_valid(user_input):
         #State 5 cont.
         #Deals with exponent power of 10
         elif exp_check:
-            pow_10 = char_pos - exp_pos
+            pow_10 = input_len - char_pos - 1
+            print(pow_10)
             exp_float += (translate[chr] * (10 ** pow_10))
+            print("E float:", exp_float)
             if char_pos == (input_len - 1):
                 dec_float_point *= (10 ** exp_float)
             char_pos += 1
