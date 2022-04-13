@@ -23,7 +23,10 @@ def dfa_valid(user_input):
     char_pos = 0                    #Character position in string
     dec_pos = user_input.find('.')  #Location of decimal dot
     dec_check = False               #Boolean for the decimal dot
+
+    exp_pos = user_input.find('e')  #Location of e
     exp_check = False               #Boolean for e
+    exp_float = 0                   #Number of times 10 is multiplied by
 
     pow_10 = 0                      #Power of 10 to multiply by
 
@@ -40,6 +43,20 @@ def dfa_valid(user_input):
             if chr not in translate.keys() and chr != '.':
                 print("Not a valid input")
                 return
+        
+        if chr not in translate.keys():
+            print("Not a valid input")
+            return
+        
+        #State 5
+        if chr == 'e':
+            if exp_check:
+                print("Not a valid input")
+                return
+            else:
+                char_pos += 1
+                exp_check = True
+                continue
 
         #State 3
         if chr == '.':
@@ -51,10 +68,23 @@ def dfa_valid(user_input):
                 dec_check = True
                 continue
 
+        #State 2
+        #Numbers before Decimal
         if dec_check and not exp_check:
             pow_10 = dec_pos - char_pos
+        #State 4
+        #Numbers after decimal
         elif not dec_check and not exp_check:
             pow_10 = dec_pos - char_pos - 1
+        #State 5 cont.
+        #Deals with exponent power of 10
+        elif exp_check:
+            pow_10 = char_pos - exp_pos
+            exp_float += (translate[chr] * (10 ** pow_10))
+            if char_pos == (input_len - 1):
+                dec_float_point *= (10 ** exp_float)
+            char_pos += 1
+            continue
         
         
 
@@ -67,6 +97,7 @@ def dfa_valid(user_input):
         print("Dictionary equiv:", translate[chr])
         print("Float Number:", dec_float_point)
     
+    print("Final Float Number:", dec_float_point)
     num_dict.close()
     return
 
