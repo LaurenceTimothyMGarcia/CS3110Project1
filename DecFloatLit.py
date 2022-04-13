@@ -44,10 +44,6 @@ def dfa_valid(user_input):
                 print("Not a valid input")
                 return
         
-        if chr not in translate.keys():
-            print("Not a valid input")
-            return
-        
         #State 5
         if chr == 'e':
             if exp_check:
@@ -67,6 +63,11 @@ def dfa_valid(user_input):
                 char_pos += 1
                 dec_check = True
                 continue
+        
+        #Trash State
+        if chr not in translate.keys():
+            print("Not a valid input")
+            return
 
         #State 2
         #Numbers before Decimal
