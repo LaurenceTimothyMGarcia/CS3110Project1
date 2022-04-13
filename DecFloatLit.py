@@ -50,7 +50,7 @@ def dfa_valid(user_input):
         #State 1
         #Checks if first input is either digit or decimal dot
         if char_pos == 0:
-            if chr == 'e':
+            if chr == 'e' or chr == '_':
                 print("Not a valid input")
                 return
             if chr not in translate.keys() and chr != '.':
@@ -59,23 +59,14 @@ def dfa_valid(user_input):
         
         #Checks for underscores
         if chr == "_":
-            if user_input[char_pos + 1] != 'e' or user_input[char_pos + 1] != 'f' or user_input[char_pos + 1] != 'd' or user_input[char_pos + 1] != '.':
-                if user_input[char_pos - 1] != 'e' or user_input[char_pos - 1] != 'f' or user_input[char_pos - 1] != 'd' or user_input[char_pos - 1] != '.':
-                    if user_input[char_pos - 1] in translate.keys() and user_input[char_pos + 1] in translate.keys():
-                        continue
-                    else:
-                        print("Not a valid input")
-                        return
-                else:
-                    print("Not a valid input")
-                    return
-            else:
-                print("Not a valid input")
-                return
+            continue
             
 
         #State 5
         if chr == 'e':
+            if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
+                print("Not a valid input")
+                return
             if exp_check:
                 print("Not a valid input")
                 return
@@ -86,6 +77,11 @@ def dfa_valid(user_input):
 
         #State 3
         if chr == '.':
+            if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
+                print(user_input[char_pos + 1])
+                print(user_input[char_pos - 1])
+                print("Not a valid input")
+                return
             if dec_check:
                 print("Not a valid input")
                 return
@@ -97,6 +93,9 @@ def dfa_valid(user_input):
         #State 6
         #Checks for float or double
         if chr == 'f' or chr == 'd':
+            if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
+                print("Not a valid input")
+                return
             print("char pos:", char_pos)
             print("String len:", (input_len - 1))
             if char_pos != (input_len - 1):
@@ -110,14 +109,15 @@ def dfa_valid(user_input):
             print("Not a valid input")
             return
 
-        #State 2
-        #Numbers before Decimal
-        if dec_pos == -1:   #If there is no decimal
+        #If there is no decimal
+        if dec_pos == -1:
             pow_10 = (input_len - 2) - char_pos
+        #State 4
+        #Numbers after Decimal
         elif dec_check and not exp_check:
             pow_10 = dec_pos - char_pos
-        #State 4
-        #Numbers after decimal
+        #State 2
+        #Numbers before decimal
         elif not dec_check and not exp_check:
             pow_10 = dec_pos - char_pos - 1
         #State 5 cont.
