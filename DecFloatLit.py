@@ -50,7 +50,7 @@ def dfa_valid(user_input):
         #State 1
         #Checks if first input is either digit or decimal dot
         if char_pos == 0:
-            if chr == 'e' or chr == '_':
+            if chr == 'e' or chr == '_' or chr == 'f' or chr == 'd':
                 print("Not a valid input")
                 return
             if chr not in translate.keys() and chr != '.':
@@ -62,7 +62,7 @@ def dfa_valid(user_input):
             continue
             
 
-        #State 5
+        #State 7
         if chr == 'e':
             if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
                 print("Not a valid input")
@@ -90,7 +90,7 @@ def dfa_valid(user_input):
                 dec_check = True
                 continue
         
-        #State 6
+        #State 10
         #Checks for float or double
         if chr == 'f' or chr == 'd':
             if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
@@ -112,7 +112,7 @@ def dfa_valid(user_input):
         #If there is no decimal
         if dec_pos == -1:
             pow_10 = (input_len - 2) - char_pos
-        #State 4
+        #State 5
         #Numbers after Decimal
         elif dec_check and not exp_check:
             pow_10 = dec_pos - char_pos
@@ -120,7 +120,7 @@ def dfa_valid(user_input):
         #Numbers before decimal
         elif not dec_check and not exp_check:
             pow_10 = dec_pos - char_pos - 1
-        #State 5 cont.
+        #State 8
         #Deals with exponent power of 10
         elif exp_check:
             pow_10 = input_len - char_pos - 1
