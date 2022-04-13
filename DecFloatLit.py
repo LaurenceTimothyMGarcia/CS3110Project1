@@ -33,6 +33,7 @@ def dfa_valid(user_input):
     exp_float = 0                   #Number of times 10 is multiplied by
 
     space_count = user_input.count("_") #counts number of white spaces
+    neg_count = user_input.count("-")   #counts negative sign
     f_count = user_input.count("f") #counts f
     d_count = user_input.count("d") #counts d
 
@@ -45,10 +46,12 @@ def dfa_valid(user_input):
         return
     
     #Adjusts input length to account for space being removed
-    array_len = array_len - (space_count + exp_count + f_count + d_count)
-    print(array_len)
+    print("Neg Count:", neg_count)
+    array_len = array_len - (space_count + exp_count + f_count + d_count + neg_count)
+    print("Size of String:", array_len)
 
     for chr in user_input:
+        print()
         print("Char Pos:", char_pos)
         print("Character is:", chr)
 
@@ -66,7 +69,14 @@ def dfa_valid(user_input):
         if chr == "_":
             char_pos += 1
             continue
-            
+        
+        if chr == "-":
+            if user_input[char_pos - 1] != 'e': #if in front of e
+                print("Not a valid input")
+                return
+            exp_neg_check = True
+            print("E is behind me:", exp_neg_check)
+            continue
 
         #State 7
         if chr == 'e':
@@ -75,8 +85,7 @@ def dfa_valid(user_input):
             if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
                 print("Not a valid input")
                 return
-            if user_input[char_pos + 1] == '-': #Checks for Negative
-                exp_neg_check = True
+            
             if exp_check:
                 print("Not a valid input")
                 return
@@ -141,11 +150,15 @@ def dfa_valid(user_input):
         #State 8
         #Deals with exponent power of 10
         if exp_check:
-            pow_10 = input_len - char_pos - 1
+            pow_10 = input_len - char_pos - 2
             print("Power of Exponent:", pow_10)
             exp_float += (translate[chr] * (10 ** pow_10))
             print("E float:", exp_float)
-            if char_pos == (array_len):
+            if char_pos >= (array_len):
+                if exp_neg_check:
+                    exp_float *= -1
+                    print("E IS NEGATIVE:", exp_float)
+                print("Exponent times 10:", (10**exp_float))
                 dec_float_point *= (10 ** exp_float)
             char_pos += 1
             continue
