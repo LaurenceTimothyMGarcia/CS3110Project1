@@ -154,6 +154,9 @@ def dfa_valid(user_input):
             print("Power of Exponent:", pow_10)
             exp_float += (translate[chr] * (10 ** pow_10))
             print("E float:", exp_float)
+
+            print("Char_pos:", char_pos)
+            print("ArrayLen:", array_len)
             if char_pos >= (array_len):
                 if exp_neg_check:
                     exp_float *= -1
