@@ -29,6 +29,7 @@ def dfa_valid(user_input):
     exp_pos = user_input.find('e')  #Location of e
     exp_count = user_input.count('e')
     exp_check = False               #Boolean for e
+    exp_neg_check = False           #Boolean for if e is negative
     exp_float = 0                   #Number of times 10 is multiplied by
 
     space_count = user_input.count("_") #counts number of white spaces
@@ -74,6 +75,8 @@ def dfa_valid(user_input):
             if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
                 print("Not a valid input")
                 return
+            if user_input[char_pos + 1] == '-': #Checks for Negative
+                exp_neg_check = True
             if exp_check:
                 print("Not a valid input")
                 return
