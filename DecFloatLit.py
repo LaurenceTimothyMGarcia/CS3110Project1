@@ -49,7 +49,8 @@ def dfa_valid(user_input):
     print()
     print("Neg Count:", neg_count)
     print("E Count:", exp_count)
-    array_len = array_len - (space_count + exp_count + f_count + d_count + neg_count)
+    difference = space_count + exp_count + f_count + d_count + neg_count
+    array_len = array_len - difference
     print("Size of String:", array_len)
 
     for chr in user_input:
@@ -164,7 +165,7 @@ def dfa_valid(user_input):
 
         #If there is no decimal
         if dec_pos == -1:
-            pow_10 = (array_len) - char_pos
+            pow_10 = (array_len - difference) - char_pos
         #State 5
         #Numbers after Decimal
         elif dec_check == True:
