@@ -142,7 +142,7 @@ def dfa_valid(user_input):
         #State 8
         #Deals with exponent power of 10
         if exp_check:
-            pow_10 = input_len - char_pos - 1
+            pow_10 = input_len - char_pos - 1 - f_count - d_count
             if exp_neg_check:
                 pow_10 -= 1
             print("Power of Exponent:", pow_10)
