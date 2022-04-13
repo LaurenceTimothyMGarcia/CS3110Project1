@@ -9,7 +9,7 @@ I started by drawing out a DFA, with the alphabet of the following symbols {d, t
 - 'e' represents the exponent part
 - 'f' represents the float or double type suffix, such as 'f' or 'd'
 
-The DFA that I created comprises of 7 states, with one being a trash state and 3 accept states. The following image is the DFA I created.
+The DFA that I created comprises of 11 states, with one being a trash state and 3 accept states. The following image is the DFA I created.
 ![alt text](https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/main/Images/DFA_Drawn.jpg)
 Same DFA recreated in JFlaps
 
