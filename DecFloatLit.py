@@ -87,7 +87,9 @@ def dfa_valid(user_input):
 
         #State 2
         #Numbers before Decimal
-        if dec_check and not exp_check:
+        if dec_pos == -1:   #If there is no decimal
+            pow_10 = (input_len - 2) - char_pos
+        elif dec_check and not exp_check:
             pow_10 = dec_pos - char_pos
         #State 4
         #Numbers after decimal
