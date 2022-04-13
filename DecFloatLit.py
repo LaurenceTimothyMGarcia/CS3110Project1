@@ -168,13 +168,13 @@ def dfa_valid(user_input):
         #State 5
         #Numbers after Decimal
         elif dec_check == True:
-            pow_10 = dec_pos - char_pos - 1
+            pow_10 = dec_pos - char_pos
             print("Pow 10 after dec:", pow_10)
         #State 2
         #Numbers before decimal
         elif dec_check == False:
             print("Here")
-            pow_10 = dec_pos - char_pos - 2
+            pow_10 = dec_pos - char_pos - 1
         
         print("Pow10:", pow_10)
 
