@@ -29,11 +29,15 @@ def dfa_valid(user_input):
     exp_check = False               #Boolean for e
     exp_float = 0                   #Number of times 10 is multiplied by
 
-    f_check = False                 #Checks for f or d
+    space_count = user_input.count("_") #counts number of white spaces
+    print(space_count)
 
     if dec_pos == -1 and exp_pos == -1 and (user_input[input_len - 1] != 'f' and user_input[input_len - 1] != 'd'):
         print("Not a valid input")
         return
+    
+    input_len = input_len - space_count
+    print(input_len)
 
     for chr in user_input:
         print("Char Pos:", char_pos)
@@ -49,6 +53,9 @@ def dfa_valid(user_input):
                 print("Not a valid input")
                 return
         
+        if chr == "_":
+            continue
+
         #State 5
         if chr == 'e':
             if exp_check:
@@ -107,7 +114,6 @@ def dfa_valid(user_input):
             char_pos += 1
             continue
         
-
         dec_float_point += (translate[chr] * (10 ** pow_10))
         
         char_pos += 1
