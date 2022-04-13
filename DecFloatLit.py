@@ -46,7 +46,9 @@ def dfa_valid(user_input):
         return
     
     #Adjusts input length to account for space being removed
+    print()
     print("Neg Count:", neg_count)
+    print("E Count:", exp_count)
     array_len = array_len - (space_count + exp_count + f_count + d_count + neg_count)
     print("Size of String:", array_len)
 
@@ -108,6 +110,7 @@ def dfa_valid(user_input):
                 if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
                     print("Not a valid input")
                     return
+
             if dec_check:
                 print("Not a valid input")
                 return
@@ -135,22 +138,12 @@ def dfa_valid(user_input):
             print("Not a valid input")
             return
 
-        #If there is no decimal
-        if dec_pos == -1:
-            pow_10 = (array_len) - char_pos
-        #State 5
-        #Numbers after Decimal
-        elif char_pos > dec_pos and char_pos < exp_pos:
-            pow_10 = dec_pos - char_pos
-        #State 2
-        #Numbers before decimal
-        elif char_pos < dec_pos:
-            pow_10 = dec_pos - char_pos - 1
-        
         #State 8
         #Deals with exponent power of 10
         if exp_check:
-            pow_10 = input_len - char_pos - 2
+            pow_10 = input_len - char_pos - 1
+            if exp_neg_check:
+                pow_10 -= 1
             print("Power of Exponent:", pow_10)
             exp_float += (translate[chr] * (10 ** pow_10))
             print("E float:", exp_float)
@@ -165,7 +158,26 @@ def dfa_valid(user_input):
                 dec_float_point *= (10 ** exp_float)
             char_pos += 1
             continue
+
+        print("Dec pos:", dec_pos)
+        print("Exp Pos:", exp_pos)
+
+        #If there is no decimal
+        if dec_pos == -1:
+            pow_10 = (array_len) - char_pos
+        #State 5
+        #Numbers after Decimal
+        elif dec_check == True:
+            pow_10 = dec_pos - char_pos - 1
+            print("Pow 10 after dec:", pow_10)
+        #State 2
+        #Numbers before decimal
+        elif dec_check == False:
+            print("Here")
+            pow_10 = dec_pos - char_pos - 2
         
+        print("Pow10:", pow_10)
+
         dec_float_point += (translate[chr] * (10 ** pow_10))
         
         char_pos += 1
