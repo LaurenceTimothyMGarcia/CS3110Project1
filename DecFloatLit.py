@@ -88,6 +88,9 @@ def dfa_valid(user_input):
 
         #State 3
         if chr == '.':
+            if array_len <= 0:
+                print("Not a valid input")
+                return
             if dec_pos == (array_len):
                 if user_input[char_pos - 1] == '_':
                     print("Not a valid input")
