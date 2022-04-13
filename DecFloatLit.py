@@ -19,6 +19,7 @@ def dfa_valid(user_input):
     user_input = user_input.lower() #changes everything to lower case
     input_len = len(user_input)     #provides length of string
     dec_float_point = 0             #Float Point
+    pow_10 = 0                      #Power of 10 to multiply by
 
     char_pos = 0                    #Character position in string
     dec_pos = user_input.find('.')  #Location of decimal dot
@@ -28,7 +29,13 @@ def dfa_valid(user_input):
     exp_check = False               #Boolean for e
     exp_float = 0                   #Number of times 10 is multiplied by
 
-    pow_10 = 0                      #Power of 10 to multiply by
+    f_pos = user_input.find('f')    #Location of f
+    d_pos = user_input.find('d')    #Location of d
+    f_check = False                 #Checks for f or d
+
+    if dec_pos == -1 and exp_pos == -1 and (f_pos == -1 or d_pos == -1):
+        print("Not a valid input")
+        return
 
     for chr in user_input:
         print("Char Pos:", char_pos)
