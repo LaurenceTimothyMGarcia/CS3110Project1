@@ -59,11 +59,14 @@ def dfa_valid(user_input):
         
         #Checks for underscores
         if chr == "_":
+            char_pos += 1
             continue
             
 
         #State 7
         if chr == 'e':
+            print(user_input[char_pos + 1])
+            print(user_input[char_pos - 1])
             if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
                 print("Not a valid input")
                 return
@@ -73,15 +76,19 @@ def dfa_valid(user_input):
             else:
                 char_pos += 1
                 exp_check = True
+                print(exp_check)
                 continue
 
         #State 3
         if chr == '.':
-            if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
-                print(user_input[char_pos + 1])
-                print(user_input[char_pos - 1])
-                print("Not a valid input")
-                return
+            if dec_pos == (input_len-1):
+                if user_input[char_pos - 1] == '_':
+                    print("Not a valid input")
+                    return
+            else:
+                if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
+                    print("Not a valid input")
+                    return
             if dec_check:
                 print("Not a valid input")
                 return
@@ -93,7 +100,7 @@ def dfa_valid(user_input):
         #State 10
         #Checks for float or double
         if chr == 'f' or chr == 'd':
-            if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
+            if user_input[char_pos - 1] == '_':
                 print("Not a valid input")
                 return
             print("char pos:", char_pos)
@@ -122,7 +129,7 @@ def dfa_valid(user_input):
             pow_10 = dec_pos - char_pos - 1
         #State 8
         #Deals with exponent power of 10
-        elif exp_check:
+        if exp_check:
             pow_10 = input_len - char_pos - 1
             print(pow_10)
             exp_float += (translate[chr] * (10 ** pow_10))
