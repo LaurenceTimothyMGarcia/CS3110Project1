@@ -8,7 +8,7 @@ import json
 def main():
     user_input = input("Input String here (Type in exit(0) to quit): ")
 
-    while user_input != "exit(0)":
+    while user_input != "q":
         dfa_valid(user_input)
         user_input = input("Input String here (Type in exit(0) to quit): ")
 
