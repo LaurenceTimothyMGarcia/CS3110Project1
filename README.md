@@ -13,7 +13,7 @@ I started by drawing out a DFA, with the alphabet of the following symbols {d, t
 
 The DFA that I created comprises of 11 states, with one being a trash state and 4 accept states. The following image is the DFA I created.
 ![alt text](https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/main/Images/DFA_Drawn.jpg)
-Same DFA recreated in JFlaps
+Same DFA recreated in JFlaps, which the file for can be found here: https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/main/CS3110Project1.jff
 
 ![alt text](https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/main/Images/DFA_JFLAPS.png)
 
