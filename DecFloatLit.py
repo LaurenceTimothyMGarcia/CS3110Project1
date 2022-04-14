@@ -71,6 +71,7 @@ def dfa_valid(user_input):
                 dec_pos += 1
             continue
         
+        #State 7
         #Checks for negative sign
         if chr == "-":
             if user_input[char_pos - 1] != 'e': #if in front of e
@@ -86,7 +87,8 @@ def dfa_valid(user_input):
             exp_neg_check = False
             continue
 
-        #State 7
+        #State 5
+        #Deals with e input
         if chr == 'e':
             if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
                 print("Not a valid input")
@@ -116,7 +118,7 @@ def dfa_valid(user_input):
                 dec_check = True
                 continue
         
-        #State 10
+        #State 8
         #Checks for float or double
         if chr == 'f' or chr == 'd':
             if user_input[char_pos - 1] == '_':
@@ -133,7 +135,7 @@ def dfa_valid(user_input):
             print("Not a valid input")
             return
 
-        #State 8
+        #State 6
         #Deals with exponent power of 10
         if exp_check:
             pow_10 = input_len - char_pos - 1 - f_count - d_count
@@ -151,7 +153,7 @@ def dfa_valid(user_input):
         #If there is no decimal
         if dec_pos == -1:
             pow_10 = (array_len - exp_count) - char_pos
-        #State 5
+        #State 4
         #Numbers after Decimal
         elif dec_check == True:
             pow_10 = dec_pos - char_pos
