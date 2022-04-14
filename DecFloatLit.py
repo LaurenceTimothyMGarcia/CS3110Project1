@@ -102,7 +102,6 @@ def dfa_valid(user_input):
             else:
                 char_pos += 1
                 exp_check = True
-                print(exp_check)
                 continue
 
         #State 3
