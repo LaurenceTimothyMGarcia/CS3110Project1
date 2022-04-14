@@ -10,7 +10,7 @@ def main():
 
     while user_input != "q":
         dfa_valid(user_input)
-        user_input = input("Input String here (Type in exit(0) to quit): ")
+        user_input = input("Input String here (Type in q to quit): ")
 
 def dfa_valid(user_input):
     num_dict = open('NumAlpha.json')
@@ -33,6 +33,7 @@ def dfa_valid(user_input):
     exp_float = 0                   #Number of times 10 is multiplied by
 
     space_count = user_input.count("_") #counts number of white spaces
+    space_post_dec = 0                  #counts spaces after decimal
     neg_count = user_input.count("-")   #counts negative sign
     pos_count = user_input.count("+")   #counts positive sign
     f_count = user_input.count("f") #counts f
@@ -67,6 +68,7 @@ def dfa_valid(user_input):
             char_pos += 1
             if dec_check:
                 dec_pos += 1
+                space_post_dec += 1
             else:
                 dec_pos += 1
             continue
@@ -166,6 +168,9 @@ def dfa_valid(user_input):
         
         char_pos += 1
     
+    if space_post_dec > 0:
+        dec_float_point *= (10 ** space_post_dec)
+
     print("Final Float Number:", dec_float_point)
     num_dict.close()
     return
