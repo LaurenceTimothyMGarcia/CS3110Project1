@@ -30,6 +30,7 @@ def dfa_valid(user_input):
     exp_count = user_input.count('e')
     exp_check = False               #Boolean for e
     exp_neg_check = False           #Boolean for if e is negative
+    exp_pos_check = False           #Boolean for if e is positive
     exp_float = 0                   #Number of times 10 is multiplied by
 
     space_count = user_input.count("_") #counts number of white spaces
@@ -86,7 +87,7 @@ def dfa_valid(user_input):
             if user_input[char_pos - 1] != 'e': #if in front of e
                 print("Not a valid input")
                 return
-            exp_neg_check = False
+            exp_pos_check = True
             continue
 
         #State 5
@@ -140,7 +141,7 @@ def dfa_valid(user_input):
         #Deals with exponent power of 10
         if exp_check:
             pow_10 = input_len - char_pos - 1 - f_count - d_count
-            if exp_neg_check:
+            if exp_neg_check or exp_pos_check:
                 pow_10 -= 1
             exp_float += (translate[chr] * (10 ** pow_10))
 
