@@ -34,6 +34,7 @@ def dfa_valid(user_input):
 
     space_count = user_input.count("_") #counts number of white spaces
     neg_count = user_input.count("-")   #counts negative sign
+    pos_count = user_input.count("+")   #counts positive sign
     f_count = user_input.count("f") #counts f
     d_count = user_input.count("d") #counts d
 
@@ -46,20 +47,11 @@ def dfa_valid(user_input):
         return
     
     #Adjusts input length to account for space being removed
-    print()
-    print("Space Count:", space_count)
-    print("Neg Count:", neg_count)
-    print("E Count:", exp_count)
-    difference = space_count + exp_count + f_count + d_count + neg_count
+    difference = space_count + exp_count + f_count + d_count + neg_count + pos_count
     dec_pos -= space_count
     array_len = array_len - difference
-    print("Size of String:", array_len)
 
     for chr in user_input:
-        print()
-        print("Char Pos:", char_pos)
-        print("Character is:", chr)
-
         #State 1
         #Checks if first input is either digit or decimal dot
         if char_pos == 0:
@@ -73,21 +65,29 @@ def dfa_valid(user_input):
         #Checks for underscores
         if chr == "_":
             char_pos += 1
-            dec_pos += 1
+            if dec_check:
+                dec_pos += 1
+            else:
+                dec_pos += 1
             continue
         
+        #Checks for negative sign
         if chr == "-":
             if user_input[char_pos - 1] != 'e': #if in front of e
                 print("Not a valid input")
                 return
             exp_neg_check = True
-            print("E is behind me:", exp_neg_check)
+            continue
+
+        if chr == "+":
+            if user_input[char_pos - 1] != 'e': #if in front of e
+                print("Not a valid input")
+                return
+            exp_neg_check = False
             continue
 
         #State 7
         if chr == 'e':
-            print(user_input[char_pos + 1])
-            print(user_input[char_pos - 1])
             if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
                 print("Not a valid input")
                 return
@@ -107,18 +107,6 @@ def dfa_valid(user_input):
             if array_len <= 0:
                 print("Not a valid input")
                 return
-            print("Dec_Pos:", dec_pos)
-            print("Array Len:", array_len)
-            '''
-            if dec_pos == (array_len):
-                if user_input[char_pos - 1] == '_':
-                    print("Not a valid input")
-                    return
-            else:
-                if user_input[char_pos + 1] == '_' or user_input[char_pos - 1] == '_':
-                    print("Not a valid input")
-                    return
-            '''
 
             if dec_check:
                 print("Not a valid input")
@@ -134,8 +122,6 @@ def dfa_valid(user_input):
             if user_input[char_pos - 1] == '_':
                 print("Not a valid input")
                 return
-            print("char pos:", char_pos)
-            print("String len:", (input_len))
             if char_pos != (input_len - 1):
                 print("Not a valid input")
                 return
@@ -153,23 +139,14 @@ def dfa_valid(user_input):
             pow_10 = input_len - char_pos - 1 - f_count - d_count
             if exp_neg_check:
                 pow_10 -= 1
-            print("Power of Exponent:", pow_10)
             exp_float += (translate[chr] * (10 ** pow_10))
-            print("E float:", exp_float)
 
-            print("Char_pos:", char_pos)
-            print("ArrayLen:", array_len)
             if char_pos >= (array_len):
                 if exp_neg_check:
                     exp_float *= -1
-                    print("E IS NEGATIVE:", exp_float)
-                print("Exponent times 10:", (10**exp_float))
                 dec_float_point *= (10 ** exp_float)
             char_pos += 1
             continue
-
-        print("Dec pos:", dec_pos)
-        print("Exp Pos:", exp_pos)
 
         #If there is no decimal
         if dec_pos == -1:
@@ -178,23 +155,14 @@ def dfa_valid(user_input):
         #Numbers after Decimal
         elif dec_check == True:
             pow_10 = dec_pos - char_pos
-            print("Pow 10 after dec:", pow_10)
         #State 2
         #Numbers before decimal
         elif dec_check == False:
-            print("Here")
             pow_10 = dec_pos - char_pos - 1
-        
-        print("Pow10:", pow_10)
 
         dec_float_point += (translate[chr] * (10 ** pow_10))
         
         char_pos += 1
-
-        #Checks for testing
-        print("String character:", chr)
-        print("Dictionary equiv:", translate[chr])
-        print("Float Number:", dec_float_point)
     
     print("Final Float Number:", dec_float_point)
     num_dict.close()
