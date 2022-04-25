@@ -58,6 +58,11 @@ public class TextBasedCalc
                                 currentState = 2;
                                 break;
                             case '.':
+                                if (stringSize == 1)
+                                {
+                                    currentState = 0;
+                                    break;
+                                }
                                 decPos = lenPos;
                                 currentState = 3;
                                 break;
@@ -279,6 +284,7 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 2;
+                                fixedString = addTotal(lenPos, currentState, decPos, expPos, fixedString, ch);
                                 break;
                             default:
                                 currentState = 0;
@@ -302,6 +308,7 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 4;
+                                fixedString = addTotal(lenPos, currentState, decPos, expPos, fixedString, ch);
                                 break;
                             default:
                                 currentState = 0;
@@ -325,6 +332,7 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 6;
+                                fixedString = addTotal(lenPos, currentState, decPos, expPos, fixedString, ch);
                                 break;
                             default:
                                 currentState = 0;
