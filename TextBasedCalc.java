@@ -51,8 +51,7 @@ public class TextBasedCalc
                             case '7':
                             case '8':
                             case '9':
-                                fixedString = charToFloat(ch);
-                                System.out.println("Fixed String: " + fixedString);
+                                fixedString = addTotal(lenPos, currentState, fixedString, ch);
                                 currentState = 2;
                                 break;
                             case '.':
@@ -78,6 +77,7 @@ public class TextBasedCalc
                             case '7':
                             case '8':
                             case '9':
+                                fixedString = addTotal(lenPos, currentState, fixedString, ch);
                                 currentState = 2;
                                 break;
                             case '.':
@@ -318,7 +318,7 @@ public class TextBasedCalc
             }
 
             inputString = keyboardInput(kb);
-            
+
         }   while (inputString != "q");
         
 
@@ -374,5 +374,26 @@ public class TextBasedCalc
         }
 
         return valueReturn;
+    }
+
+    public static float addTotal(int pos, int state, float fixedString, char ch)
+    {
+        switch (state)
+        {
+            case 1:
+                fixedString = charToFloat(ch);
+                break;
+            case 2:
+                fixedString = fixedString * 10;
+                fixedString = fixedString + charToFloat(ch);
+                break;
+            case 4:
+                break;
+            case 6:
+                break;
+        }
+
+        System.out.println("Fixed String: " + fixedString);
+        return fixedString;
     }
 }
