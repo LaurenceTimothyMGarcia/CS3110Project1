@@ -13,7 +13,7 @@ public class TextBasedCalc
         Scanner kb = new Scanner(System.in);
         String inputString = keyboardInput(kb);
 
-        do
+        mainLoop: do
         {
             inputString = inputString.toLowerCase();
             int stringSize = inputString.length();
@@ -66,6 +66,8 @@ public class TextBasedCalc
                                 decPos = lenPos;
                                 currentState = 3;
                                 break;
+                            case 'q':
+                                break mainLoop;
                             default:
                                 currentState = 0;
                                 break;
@@ -347,6 +349,7 @@ public class TextBasedCalc
                 }
             }
 
+            /*** Determines which states are the final states ***/
             switch (currentState)
             {
                 case 3:
@@ -448,6 +451,7 @@ public class TextBasedCalc
         return valueReturn;
     }
 
+    /*** Adds the char into the final total ***/
     public static float addTotal(int lenPos, int state, int decPos, int expPos, float fixedString, char ch)
     {
         switch (state)
