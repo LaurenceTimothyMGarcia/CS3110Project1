@@ -19,7 +19,12 @@ public class TextBasedCalc
         float fixedString = 0;
         int currentState = 1;
 
-        while (lenPos < stringSize)
+        int decPos = 0;
+        int expPos = 0;
+
+        //Looping through for validation
+        //Using label to break loop in switch statement
+        loop: while (lenPos < stringSize)
         {
             char ch = inputString.charAt(lenPos);
 
@@ -48,7 +53,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
-                    break;
+                    continue loop;
                 
                 //State 2 - Digit before decimals
                 case 2:
@@ -76,7 +81,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
-                    break;
+                    continue loop;
                 
                 //State 3 - receives decimal
                 case 3:
@@ -105,7 +110,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
-                    break;
+                    continue loop;
 
                 //State 4 - After digits before E
                 case 4:
@@ -137,7 +142,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
-                    break;
+                    continue loop;
 
                 //State 5 - E has been inputed
                 case 5:
@@ -163,7 +168,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
-                    break;
+                    continue loop;
                 
                 //State 6 - digits after e
                 case 6:
@@ -191,7 +196,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
-                    break;
+                    continue loop;
 
                 //State 7 - looks for - or + after E
                 case 7:
@@ -213,7 +218,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
-                    break;
+                    continue loop;
                 
                 //State 8 - Receives f or d
                 case 8:
@@ -223,7 +228,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
-                    break;
+                    continue loop;
 
                 //State 9, 10, 11 - underscore state
                 case 9:
@@ -248,6 +253,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
+                    continue loop;
                 case 10:
                     switch(ch)
                     {
@@ -270,6 +276,7 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
+                    continue loop;
                 case 11:
                     switch(ch)
                     {
@@ -292,11 +299,12 @@ public class TextBasedCalc
                             currentState = 0;
                             break;
                     }
+                    continue loop;
 
                 //Trash State
                 case 0:
                     System.out.println("Input not valid");
-                    break;
+                    continue loop;
             }
 
             lenPos++;
