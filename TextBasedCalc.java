@@ -339,39 +339,50 @@ public class TextBasedCalc
                 }
             }
 
-            if (expNeg)
+            switch (currentState)
             {
-                expValue *= -1;
-            }
-
-            System.out.println("EXP value: " + expValue);
-
-            if (expValue != 0)
-            {
-                float exp10 = 1;
-
-                if (expValue > 0)
-                {
-                    for (int i = 0; i < expValue; i++)
+                case 3:
+                case 4:
+                case 6:
+                case 8:
+                    if (expNeg)
                     {
-                        exp10 *= 10;
+                        expValue *= -1;
                     }
-                }
-                else
-                {
-                    for (int i = 0; i > expValue; i--)
+        
+                    System.out.println("EXP value: " + expValue);
+        
+                    if (expValue != 0)
                     {
-                        exp10 /= 10;
+                        float exp10 = 1;
+        
+                        if (expValue > 0)
+                        {
+                            for (int i = 0; i < expValue; i++)
+                            {
+                                exp10 *= 10;
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i > expValue; i--)
+                            {
+                                exp10 /= 10;
+                            }
+                        }
+        
+                        fixedString *= exp10;
                     }
-                }
-
-                fixedString *= exp10;
+        
+                    System.out.println("Final Number: " + fixedString);
+                    break;
+                
+                default:
+                    System.out.println("Input not valid");
+                    break;
             }
-
-            System.out.println("Final Number: " + fixedString);
 
             inputString = keyboardInput(kb);
-
         }   while (inputString != "q");
         
 
