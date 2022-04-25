@@ -4,6 +4,7 @@
 //May 2nd, 2022
 
 import java.util.Scanner;
+import java.util.*;
 
 public class TextBasedCalc
 {
@@ -27,6 +28,8 @@ public class TextBasedCalc
         loop: while (lenPos < stringSize)
         {
             char ch = inputString.charAt(lenPos);
+            System.out.println("Character: " + ch);
+            lenPos++;
 
             switch (currentState)
             {
@@ -44,6 +47,8 @@ public class TextBasedCalc
                         case '7':
                         case '8':
                         case '9':
+                            fixedString = charToFloat(ch);
+                            System.out.println("Fixed String: " + fixedString);
                             currentState = 2;
                             break;
                         case '.':
@@ -306,8 +311,6 @@ public class TextBasedCalc
                     System.out.println("Input not valid");
                     continue loop;
             }
-
-            lenPos++;
         }
 
     }
@@ -321,5 +324,36 @@ public class TextBasedCalc
         inputString = kb.next();
 
         return inputString;
+    }
+
+    /*** Trades character for appropriate number ***/
+    public static float charToFloat(char ch)
+    {
+        float valueReturn = 0;
+        switch (ch)
+        {
+            case '0':
+                valueReturn = 0;
+            case '1':
+                valueReturn = 1;
+            case '2':
+                valueReturn = 2;
+            case '3':
+                valueReturn = 3;
+            case '4':
+                valueReturn = 4;
+            case '5':
+                valueReturn = 5;
+            case '6':
+                valueReturn = 6;
+            case '7':
+                valueReturn = 7;
+            case '8':
+                valueReturn = 8;
+            case '9':
+                valueReturn = 9;
+        }
+
+        return valueReturn;
     }
 }
