@@ -33,10 +33,7 @@ public class TextBasedCalc
             loopValid: while (lenPos < stringSize)
             {
                 char ch = inputString.charAt(lenPos);
-                System.out.println("Character: " + ch);
                 lenPos++;
-
-                System.out.println("State: " + currentState);
 
                 switch (currentState)
                 {
@@ -344,7 +341,6 @@ public class TextBasedCalc
 
                     //Trash State
                     case 0:
-                        System.out.println("Input not valid");
                         break loopValid;
                 }
             }
@@ -356,14 +352,12 @@ public class TextBasedCalc
                 case 4:
                 case 6:
                 case 8:
-                    if (expNeg)
+                    if (expNeg) //Checks if e was negative
                     {
                         expValue *= -1;
                     }
         
-                    System.out.println("EXP value: " + expValue);
-        
-                    if (expValue != 0)
+                    if (expValue != 0)  //adds the exp to the final float
                     {
                         float exp10 = 1;
         
@@ -385,7 +379,7 @@ public class TextBasedCalc
                         fixedString *= exp10;
                     }
         
-                    System.out.println("Final Number: " + fixedString);
+                    System.out.println("Float: " + fixedString);
                     break;
                 
                 default:
@@ -467,6 +461,7 @@ public class TextBasedCalc
                 float decNum = 0;
                 float powOf = 1;
 
+                //Divides by how far it is from decimal
                 for (int i = 0; i < (lenPos - decPos); i++)
                 {
                     powOf /= 10;
@@ -483,7 +478,6 @@ public class TextBasedCalc
                 break;
         }
 
-        System.out.println("Fixed String: " + fixedString);
         return fixedString;
     }
 }
