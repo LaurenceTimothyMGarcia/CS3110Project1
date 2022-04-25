@@ -51,10 +51,11 @@ public class TextBasedCalc
                             case '7':
                             case '8':
                             case '9':
-                                fixedString = addTotal(lenPos, currentState, fixedString, ch);
+                                fixedString = addTotal(lenPos, currentState, decPos, fixedString, ch);
                                 currentState = 2;
                                 break;
                             case '.':
+                                decPos = lenPos;
                                 currentState = 3;
                                 break;
                             default:
@@ -77,10 +78,11 @@ public class TextBasedCalc
                             case '7':
                             case '8':
                             case '9':
-                                fixedString = addTotal(lenPos, currentState, fixedString, ch);
+                                fixedString = addTotal(lenPos, currentState, decPos, fixedString, ch);
                                 currentState = 2;
                                 break;
                             case '.':
+                                decPos = lenPos;
                                 currentState = 3;
                                 break;
                             case '_':
@@ -107,6 +109,7 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 4;
+                                fixedString = addTotal(lenPos, currentState, decPos, fixedString, ch);
                                 break;
                             case 'e':
                                 currentState = 5;
@@ -136,6 +139,7 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 4;
+                                fixedString = addTotal(lenPos, currentState, decPos, fixedString, ch);
                                 break;
                             case 'e':
                                 currentState = 5;
@@ -376,20 +380,32 @@ public class TextBasedCalc
         return valueReturn;
     }
 
-    public static float addTotal(int pos, int state, float fixedString, char ch)
+    public static float addTotal(int lenPos, int state, int decPos, float fixedString, char ch)
     {
         switch (state)
         {
-            case 1:
+            case 1: //First digit
                 fixedString = charToFloat(ch);
                 break;
-            case 2:
-                fixedString = fixedString * 10;
-                fixedString = fixedString + charToFloat(ch);
+            case 2: //All digits before the decimal
+                fixedString *= 10;
+                fixedString += charToFloat(ch);
                 break;
-            case 4:
+            case 4: //Decimal numbers, after . before e
+                float decNum = 0;
+                float powOf = 1;
+
+                for (int i = 0; i < (lenPos - decPos); i++)
+                {
+                    powOf /= 10;
+                }
+
+                decNum = charToFloat(ch);
+                decNum *= powOf;
+
+                fixedString += decNum;
                 break;
-            case 6:
+            case 6: //Number after the e
                 break;
         }
 
