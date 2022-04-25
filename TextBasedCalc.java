@@ -25,6 +25,9 @@ public class TextBasedCalc
             int expPos = 0;
             int lenPos = 0;
 
+            float expValue = 0;
+            boolean expNeg = false;
+
             //Looping through for validation
             //Using label to break loop in switch statement
             loopValid: while (lenPos < stringSize)
@@ -51,7 +54,7 @@ public class TextBasedCalc
                             case '7':
                             case '8':
                             case '9':
-                                fixedString = addTotal(lenPos, currentState, decPos, fixedString, ch);
+                                fixedString = addTotal(lenPos, currentState, decPos, expPos, fixedString, ch);
                                 currentState = 2;
                                 break;
                             case '.':
@@ -78,12 +81,20 @@ public class TextBasedCalc
                             case '7':
                             case '8':
                             case '9':
-                                fixedString = addTotal(lenPos, currentState, decPos, fixedString, ch);
+                                fixedString = addTotal(lenPos, currentState, decPos, expPos, fixedString, ch);
                                 currentState = 2;
                                 break;
                             case '.':
                                 decPos = lenPos;
                                 currentState = 3;
+                                break;
+                            case 'e':
+                                expPos = lenPos;
+                                currentState = 5;
+                                break;
+                            case 'f':
+                            case 'd':
+                                currentState = 8;
                                 break;
                             case '_':
                                 currentState = 9;
@@ -109,9 +120,10 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 4;
-                                fixedString = addTotal(lenPos, currentState, decPos, fixedString, ch);
+                                fixedString = addTotal(lenPos, currentState, decPos, expPos, fixedString, ch);
                                 break;
                             case 'e':
+                                expPos = lenPos;
                                 currentState = 5;
                                 break;
                             case 'f':
@@ -139,9 +151,10 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 4;
-                                fixedString = addTotal(lenPos, currentState, decPos, fixedString, ch);
+                                fixedString = addTotal(lenPos, currentState, decPos, expPos, fixedString, ch);
                                 break;
                             case 'e':
+                                expPos = lenPos;
                                 currentState = 5;
                                 break;
                             case 'f':
@@ -172,9 +185,11 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 6;
+                                expValue = addTotal(lenPos, currentState, decPos, expPos, expValue, ch);
                                 break;
-                            case '+':
                             case '-':
+                                expNeg = true;
+                            case '+':
                                 currentState = 7;
                                 break;
                             default:
@@ -198,7 +213,9 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 6;
+                                expValue = addTotal(lenPos, currentState, decPos, expPos, expValue, ch);
                                 break;
+                            case 'd':
                             case 'f':
                                 currentState = 8;
                                 break;
@@ -226,6 +243,7 @@ public class TextBasedCalc
                             case '8':
                             case '9':
                                 currentState = 6;
+                                expValue = addTotal(lenPos, currentState, decPos, expPos, expValue, ch);
                                 break;
                             default:
                                 currentState = 0;
@@ -321,6 +339,37 @@ public class TextBasedCalc
                 }
             }
 
+            if (expNeg)
+            {
+                expValue *= -1;
+            }
+
+            System.out.println("EXP value: " + expValue);
+
+            if (expValue != 0)
+            {
+                float exp10 = 1;
+
+                if (expValue > 0)
+                {
+                    for (int i = 0; i < expValue; i++)
+                    {
+                        exp10 *= 10;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i > expValue; i--)
+                    {
+                        exp10 /= 10;
+                    }
+                }
+
+                fixedString *= exp10;
+            }
+
+            System.out.println("Final Number: " + fixedString);
+
             inputString = keyboardInput(kb);
 
         }   while (inputString != "q");
@@ -380,7 +429,7 @@ public class TextBasedCalc
         return valueReturn;
     }
 
-    public static float addTotal(int lenPos, int state, int decPos, float fixedString, char ch)
+    public static float addTotal(int lenPos, int state, int decPos, int expPos, float fixedString, char ch)
     {
         switch (state)
         {
@@ -406,6 +455,8 @@ public class TextBasedCalc
                 fixedString += decNum;
                 break;
             case 6: //Number after the e
+                fixedString *= 10;
+                fixedString += charToFloat(ch);
                 break;
         }
 
