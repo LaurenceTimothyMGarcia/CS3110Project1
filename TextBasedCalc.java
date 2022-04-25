@@ -107,7 +107,7 @@ public class TextBasedCalc
                     }
                     break;
 
-                //State 4 - After decimal before E
+                //State 4 - After digits before E
                 case 4:
                     switch(ch)
                     {
@@ -164,6 +164,134 @@ public class TextBasedCalc
                             break;
                     }
                     break;
+                
+                //State 6 - digits after e
+                case 6:
+                    switch(ch)
+                    {
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            currentState = 6;
+                            break;
+                        case 'f':
+                            currentState = 8;
+                            break;
+                        case '_':
+                            currentState = 11;
+                            break;
+                        default:
+                            currentState = 0;
+                            break;
+                    }
+                    break;
+
+                //State 7 - looks for - or + after E
+                case 7:
+                    switch(ch)
+                    {
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            currentState = 6;
+                            break;
+                        default:
+                            currentState = 0;
+                            break;
+                    }
+                    break;
+                
+                //State 8 - Receives f or d
+                case 8:
+                    switch(ch)
+                    {
+                        default:
+                            currentState = 0;
+                            break;
+                    }
+                    break;
+
+                //State 9, 10, 11 - underscore state
+                case 9:
+                    switch(ch)
+                    {
+                        case '_':
+                            currentState = 9;
+                            break;
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            currentState = 2;
+                            break;
+                        default:
+                            currentState = 0;
+                            break;
+                    }
+                case 10:
+                    switch(ch)
+                    {
+                        case '_':
+                            currentState = 10;
+                            break;
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            currentState = 4;
+                            break;
+                        default:
+                            currentState = 0;
+                            break;
+                    }
+                case 11:
+                    switch(ch)
+                    {
+                        case '_':
+                            currentState = 11;
+                            break;
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            currentState = 6;
+                            break;
+                        default:
+                            currentState = 0;
+                            break;
+                    }
 
                 //Trash State
                 case 0:
