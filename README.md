@@ -18,9 +18,9 @@ Same DFA recreated in JFlaps, which the file for can be found here: https://gith
 ![alt text](https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/main/Images/DFA_JFLAPS.png)
 
 # Programming the DFA
-When translating the DFA to an actual program, I have come to realize that **Java** would work best as it is a language that features switch statements that I am most familiar with. The code for Project 1 can be found in **TextBasedCalc.java**. During a while loop, there will be a switch statement that tracks which case the character of the string is in, then within those switch statements, there is another set of switch statements that check for each symbol or character and changes the case and calculates accordingly.
-
 Code TextBasedCalc.java: https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/main/TextBasedCalc.java
+
+When translating the DFA to an actual program, I have come to realize that **Java** would work best as it is a language that features switch statements that I am most familiar with. The code for Project 1 can be found in **TextBasedCalc.java**. During a while loop, there will be a switch statement that tracks which case the character of the string is in, then within those switch statements, there is another set of switch statements that check for each symbol or character and changes the case and calculates accordingly.
 
 The characters of the string would be translated into a float value by a switch statement in the method charToFloat(). It just compares the character in any of the digits from 0-9 then returns the float equivalent of that character.
 
