@@ -11,27 +11,29 @@ public class TextBasedCalc
     public static void main(String[] args)
     {
         Scanner kb = new Scanner(System.in);
-
         String inputString = keyboardInput(kb);
-        inputString = inputString.toLowerCase();
-        int stringSize = inputString.length();
-        int lenPos = 0;
 
-        float fixedString = 0;
-        int currentState = 1;
-
-        int decPos = 0;
-        int expPos = 0;
-
-        //Looping through for validation
-        //Using label to break loop in switch statement
-        while (inputString != "q")
+        do
         {
+            inputString = inputString.toLowerCase();
+            int stringSize = inputString.length();
+
+            float fixedString = 0;
+            int currentState = 1;
+
+            int decPos = 0;
+            int expPos = 0;
+            int lenPos = 0;
+
+            //Looping through for validation
+            //Using label to break loop in switch statement
             loopValid: while (lenPos < stringSize)
             {
                 char ch = inputString.charAt(lenPos);
                 System.out.println("Character: " + ch);
                 lenPos++;
+
+                System.out.println("State: " + currentState);
 
                 switch (currentState)
                 {
@@ -314,7 +316,10 @@ public class TextBasedCalc
                         break loopValid;
                 }
             }
-        }
+
+            inputString = keyboardInput(kb);
+            
+        }   while (inputString != "q");
         
 
     }
