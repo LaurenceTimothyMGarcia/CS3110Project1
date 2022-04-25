@@ -12,6 +12,7 @@ public class TextBasedCalc
         Scanner kb = new Scanner(System.in);
 
         String inputString = keyboardInput(kb);
+        inputString = inputString.toLowerCase();
         int stringSize = inputString.length();
         int lenPos = 0;
 
@@ -22,9 +23,10 @@ public class TextBasedCalc
         {
             char ch = inputString.charAt(lenPos);
 
-            switch currentState
+            switch (currentState)
             {
-                case 1: //State 1
+                //State 1 - Starting state
+                case 1:
                     switch(ch)
                     {
                         case '0':
@@ -47,7 +49,9 @@ public class TextBasedCalc
                             break;
                     }
                     break;
-                case 2: //State 2
+                
+                //State 2 - Digit before decimals
+                case 2:
                     switch(ch)
                     {
                         case '0':
@@ -73,9 +77,101 @@ public class TextBasedCalc
                             break;
                     }
                     break;
-                case 0: //Trash State
+                
+                //State 3 - receives decimal
+                case 3:
+                    switch(ch)
+                    {
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            currentState = 4;
+                            break;
+                        case 'e':
+                            currentState = 5;
+                            break;
+                        case 'f':
+                        case 'd':
+                            currentState = 8;
+                            break;
+                        default:
+                            currentState = 0;
+                            break;
+                    }
+                    break;
+
+                //State 4 - After decimal before E
+                case 4:
+                    switch(ch)
+                    {
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            currentState = 4;
+                            break;
+                        case 'e':
+                            currentState = 5;
+                            break;
+                        case 'f':
+                        case 'd':
+                            currentState = 8;
+                            break;
+                        case '_':
+                            currentState = 10;
+                            break;
+                        default:
+                            currentState = 0;
+                            break;
+                    }
+                    break;
+
+                //State 5 - E has been inputed
+                case 5:
+                    switch(ch)
+                    {
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                            currentState = 6;
+                            break;
+                        case '+':
+                        case '-':
+                            currentState = 7;
+                            break;
+                        default:
+                            currentState = 0;
+                            break;
+                    }
+                    break;
+
+                //Trash State
+                case 0:
+                    System.out.println("Input not valid");
                     break;
             }
+
+            lenPos++;
         }
 
     }
