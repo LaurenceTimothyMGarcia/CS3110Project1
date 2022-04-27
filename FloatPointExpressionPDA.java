@@ -32,7 +32,7 @@ public class FloatPointExpressionPDA
             float expValue = 0;
             boolean expNeg = false;
 
-            while (lenPos < stringSize)
+            while (lenPos <= stringSize)
             {
                 char ch = inputExpr.charAt(lenPos);
                 lenPos++;
@@ -103,8 +103,16 @@ public class FloatPointExpressionPDA
                                 currentState = 10;
                                 break;
                             default:
-                                currentState = 0;
-                                break;
+                                if (lenPos > stringSize)
+                                {
+                                    currentState = 12;
+                                    break;
+                                }
+                                else
+                                {
+                                    currentState = 0;
+                                    break;
+                                }
                         }
                         break;
                     case 3:
@@ -159,8 +167,16 @@ public class FloatPointExpressionPDA
                                 currentState = 10;
                                 break;
                             default:
-                                currentState = 0;
-                                break;
+                                if (lenPos > stringSize)
+                                {
+                                    currentState = 12;
+                                    break;
+                                }
+                                else
+                                {
+                                    currentState = 0;
+                                    break;
+                                }
                         }
                         break;
                     case 5:
@@ -208,26 +224,162 @@ public class FloatPointExpressionPDA
                             case '/':
                                 currentState = 7;
                                 break;
+                            case '(':
+                                currentState = 9;
+                                break;
                             case ' ':
                                 currentState = 10;
+                            default:
+                                if (lenPos > stringSize)
+                                {
+                                    currentState = 12;
+                                    break;
+                                }
+                                else
+                                {
+                                    currentState = 0;
+                                    break;
+                                }
+                        }
+                        break;
+                    case 7:
+                        switch (ch)
+                        {
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 2;
+                                break;
+                            case '.':
+                                currentState = 3;
+                                break;
+                            case '(':
+                                currentState = 8;
+                                break;
+                            case ' ':
+                                currentState = 11;
+                                break;
                             default:
                                 currentState = 0;
                                 break;
                         }
                         break;
-                    case 7:
-                        break;
                     case 8:
+                        switch (ch)
+                        {
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 2;
+                                break;
+                            case '.':
+                                currentState = 3;
+                                break;
+                            case '(':
+                                currentState = 8;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
                         break;
                     case 9:
+                        switch (ch)
+                        {
+                            case '+':
+                            case '-':
+                            case '*':
+                            case '/':
+                                currentState = 7;
+                                break;
+                            case ' ':
+                                currentState = 10;
+                                break;
+                            default:
+                                if (lenPos > stringSize)
+                                {
+                                    currentState = 12;
+                                    break;
+                                }
+                                else
+                                {
+                                    currentState = 0;
+                                    break;
+                                }
+                        }
                         break;
                     case 10:
+                        switch (ch)
+                        {
+                            case '+':
+                            case '-':
+                            case '*':
+                            case '/':
+                                currentState = 7;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
                         break;
                     case 11:
+                        switch (ch)
+                        {
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 4;
+                                break;
+                            case '(':
+                                currentState = 8;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
                         break;
                     case 12:
                         break;
                     case 13:
+                        switch (ch)
+                        {
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 6;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
                         break;
                 }
             }
