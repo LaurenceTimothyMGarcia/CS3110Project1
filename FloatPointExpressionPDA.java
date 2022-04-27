@@ -71,6 +71,8 @@ public class FloatPointExpressionPDA
                                 break;
                         }
                         break;
+                    
+                    //State 2 are the digits before .
                     case 2:
                         switch (ch)
                         {
@@ -119,6 +121,8 @@ public class FloatPointExpressionPDA
                                 }
                         }
                         break;
+                    
+                    //State 3 is .
                     case 3:
                         switch (ch)
                         {
@@ -139,6 +143,8 @@ public class FloatPointExpressionPDA
                                 break;
                         }
                         break;
+
+                    //State 4 are the digits after .
                     case 4:
                         switch (ch)
                         {
@@ -183,6 +189,8 @@ public class FloatPointExpressionPDA
                                 }
                         }
                         break;
+                    
+                    //State 5 is exponent e
                     case 5:
                         switch (ch)
                         {
@@ -207,6 +215,7 @@ public class FloatPointExpressionPDA
                                 break;
                         }
                         break;
+                    //Case 6 are the digits after exponent e
                     case 6:
                         switch (ch)
                         {
@@ -246,6 +255,8 @@ public class FloatPointExpressionPDA
                                 }
                         }
                         break;
+                    
+                    //State 7 is the operator state including +, -, *, /
                     case 7:
                         switch (ch)
                         {
@@ -275,6 +286,8 @@ public class FloatPointExpressionPDA
                                 break;
                         }
                         break;
+                    
+                    //States 8 and 9 are ( and ) respectively
                     case 8:
                         switch (ch)
                         {
@@ -326,6 +339,8 @@ public class FloatPointExpressionPDA
                                 }
                         }
                         break;
+                    
+                    //States 10 and 11 are white space
                     case 10:
                         switch (ch)
                         {
@@ -363,8 +378,12 @@ public class FloatPointExpressionPDA
                                 break;
                         }
                         break;
+                    
+                    //Final State
                     case 12:
                         break;
+                    
+                    //Determines if exponent e is positive or negative
                     case 13:
                         switch (ch)
                         {
@@ -384,6 +403,14 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
+                        break;
+                    
+                    //States 14, 15, 16 are underlines between digits
+                    case 14:
+                        break;
+                    case 15:
+                        break;
+                    case 16:
                         break;
                 }
             }
@@ -445,5 +472,5 @@ public class FloatPointExpressionPDA
     }
 
     /*** Create float and push to postfix stack ***/
-    
+
 }
