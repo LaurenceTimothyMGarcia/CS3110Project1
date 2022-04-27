@@ -1,16 +1,34 @@
 //Laurence Timothy M. Garcia
 //CS 3110
 //Professor Qichao Dong
-//May 2nd, 2022
+//May 4th, 2022
 
 import java.util.Scanner;
+import java.util.Stack;
 
 public class FloatPointExpressionPDA 
 {
     public static void main(String[] args)
     {
         Scanner kb = new Scanner(System.in);
+        Stack floatStack = new Stack();
 
-        Stack<> floatStack = new Stack();
+        String inputExp = keyboardInput(kb);
+
+        do
+        {
+            
+        } while (inputExp != "q");
+    }
+
+    /*** Request to Input String ***/
+    public static String keyboardInput(Scanner kb)
+    {
+        String inputString = "";
+
+        System.out.println("Input String here (Type in q to quit): ");
+        inputString = kb.next();
+
+        return inputString;
     }
 }
