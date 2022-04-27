@@ -20,7 +20,7 @@ public class FloatPointExpressionPDA
             int stringSize = inputExpr.length();
 
             //Stack to convert the string to float and stack for float fix
-            Stack floatCreate = new Stack<>();
+            Stack<Float> floatCreate = new Stack<>();
             Stack postFix = new Stack<>();
 
             //Trackers
@@ -56,6 +56,8 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 2;
+                                cToF = charToFloat(ch);
+                                floatCreate.push(cToF);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -401,5 +403,47 @@ public class FloatPointExpressionPDA
         return inputString;
     }
 
+    /*** Trades character for appropriate number ***/
+    public static float charToFloat(char ch)
+    {
+        float valueReturn = 0;
+        switch (ch)
+        {
+            case '0':
+                valueReturn = 0;
+                break;
+            case '1':
+                valueReturn = 1;
+                break;
+            case '2':
+                valueReturn = 2;
+                break;
+            case '3':
+                valueReturn = 3;
+                break;
+            case '4':
+                valueReturn = 4;
+                break;
+            case '5':
+                valueReturn = 5;
+                break;
+            case '6':
+                valueReturn = 6;
+                break;
+            case '7':
+                valueReturn = 7;
+                break;
+            case '8':
+                valueReturn = 8;
+                break;
+            case '9':
+                valueReturn = 9;
+                break;
+        }
 
+        return valueReturn;
+    }
+
+    /*** Create float and push to postfix stack ***/
+    
 }
