@@ -86,6 +86,10 @@ public class FloatPointExpressionPDA
                                 currentState = 3;
                                 decPos = lenPos;
                                 break;
+                            case 'e':
+                                currentState = 5;
+                                expPos = lenPos;
+                                break;
                             case '+':
                             case '-':
                             case '*':
@@ -104,8 +108,60 @@ public class FloatPointExpressionPDA
                         }
                         break;
                     case 3:
+                        switch (ch)
+                        {
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 4;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
                         break;
                     case 4:
+                        switch (ch)
+                        {
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 4;
+                                break;
+                            case 'e':
+                                currentState = 5;
+                                expPos = lenPos;
+                                break;
+                            case '+':
+                            case '-':
+                            case '*':
+                            case '/':
+                                currentState = 7;
+                                break;
+                            case ')':
+                                currentState = 9;
+                                break;
+                            case ' ':
+                                currentState = 10;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
                         break;
                     case 5:
                         break;
