@@ -57,6 +57,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '.':
                                 currentState = 3;
+                                decPos = lenPos;
                                 break;
                             case '(':
                                 currentState = 8;
@@ -83,6 +84,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '.':
                                 currentState = 3;
+                                decPos = lenPos;
                                 break;
                             case '+':
                             case '-':
