@@ -35,6 +35,95 @@ public class FloatPointExpressionPDA
             while (lenPos < stringSize)
             {
                 char ch = inputExpr.charAt(lenPos);
+                lenPos++;
+
+                switch (currentState)
+                {
+                    //State 1 - Starting state
+                    case 1:
+                        switch (ch)
+                        {
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 2;
+                                break;
+                            case '.':
+                                currentState = 3;
+                                break;
+                            case '(':
+                                currentState = 8;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (ch)
+                        {
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 2;
+                                break;
+                            case '.':
+                                currentState = 3;
+                                break;
+                            case '+':
+                            case '-':
+                            case '*':
+                            case '/':
+                                currentState = 7;
+                                break;
+                            case ')':
+                                currentState = 9;
+                                break;
+                            case ' ':
+                                currentState = 10;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+                    case 9:
+                        break;
+                    case 10:
+                        break;
+                    case 11:
+                        break;
+                    case 12:
+                        break;
+                    case 13:
+                        break;
+                }
             }
 
             inputExpr = keyboardInput(kb);
