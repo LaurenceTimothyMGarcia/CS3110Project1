@@ -29,6 +29,8 @@ public class FloatPointExpressionPDA
             int decPos = 0;         //Decimal position in string
             int expPos = 0;         //Exponent e position in string
 
+            float cToF = 0;
+
             float expValue = 0;
             boolean expNeg = false;
 
