@@ -12,21 +12,33 @@ public class FloatPointExpressionPDA
     {
         Scanner kb = new Scanner(System.in);
 
-        String inputExp = keyboardInput(kb);
+        String inputExpr = keyboardInput(kb);
 
         do
         {
-            inputExp = inputExp.toLowerCase();
-            int stringSize = inputExp.length();
+            inputExpr = inputExpr.toLowerCase();
+            int stringSize = inputExpr.length();
 
-            Stack floatStack = new Stack<>();
-            Stack opStack = new Stack<>();
+            //Stack to convert the string to float and stack for float fix
+            Stack floatCreate = new Stack<>();
+            Stack postFix = new Stack<>();
 
-            int currentState = 1;
+            //Trackers
+            int currentState = 1;   //Keeps track of current state
+            int lenPos = 0;         //Position in string
+            int decPos = 0;         //Decimal position in string
+            int expPos = 0;         //Exponent e position in string
 
+            float expValue = 0;
+            boolean expNeg = false;
 
+            while (lenPos < stringSize)
+            {
+                char ch = inputExpr.charAt(lenPos);
+            }
 
-        } while (inputExp != "q");
+            inputExpr = keyboardInput(kb);
+        } while (inputExpr != "q");
     }
 
     /*** Request to Input String ***/
@@ -40,5 +52,5 @@ public class FloatPointExpressionPDA
         return inputString;
     }
 
-    
+
 }
