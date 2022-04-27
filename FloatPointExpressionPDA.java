@@ -11,13 +11,21 @@ public class FloatPointExpressionPDA
     public static void main(String[] args)
     {
         Scanner kb = new Scanner(System.in);
-        Stack floatStack = new Stack();
 
         String inputExp = keyboardInput(kb);
 
         do
         {
-            
+            inputExp = inputExp.toLowerCase();
+            int stringSize = inputExp.length();
+
+            Stack floatStack = new Stack<>();
+            Stack opStack = new Stack<>();
+
+            int currentState = 1;
+
+
+
         } while (inputExp != "q");
     }
 
@@ -31,4 +39,6 @@ public class FloatPointExpressionPDA
 
         return inputString;
     }
+
+    
 }
