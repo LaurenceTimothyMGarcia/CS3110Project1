@@ -14,7 +14,7 @@ public class FloatPointExpressionPDA
 
         String inputExpr = keyboardInput(kb);
 
-        mainLoop:do
+        mainLoop: do
         {
             inputExpr = inputExpr.toLowerCase();
             int stringSize = inputExpr.length();
@@ -35,7 +35,7 @@ public class FloatPointExpressionPDA
             float expValue = 0;
             boolean expNeg = false;
 
-            while (lenPos <= stringSize)
+            stringCheckLoop: while (lenPos <= stringSize)
             {
                 char ch;
                 if (lenPos < stringSize)
@@ -44,7 +44,7 @@ public class FloatPointExpressionPDA
                 }
                 else
                 {
-                    ch = '?';
+                    ch = 'q';
                 }
 
                 lenPos++;
@@ -118,8 +118,11 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 break;
-                            case '?':
+                            case 'q':
                                 currentState = 12;
+                                break;
+                            case '_':
+                                currentState = 14;
                                 break;
                             default:
                                 currentState = 0;
@@ -181,8 +184,11 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 break;
-                            case '?':
+                            case 'q':
                                 currentState = 12;
+                                break;
+                            case '_':
+                                currentState = 15;
                                 break;
                             default:
                                 currentState = 0;
@@ -242,8 +248,11 @@ public class FloatPointExpressionPDA
                                 break;
                             case ' ':
                                 currentState = 10;
-                            case '?':
+                            case 'q':
                                 currentState = 12;
+                                break;
+                            case '_':
+                                currentState = 16;
                                 break;
                             default:
                                 currentState = 0;
@@ -321,7 +330,7 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 break;
-                            case '?':
+                            case 'q':
                                 currentState = 12;
                                 break;
                             default:
@@ -397,10 +406,73 @@ public class FloatPointExpressionPDA
                     
                     //States 14, 15, 16 are underlines between digits
                     case 14:
+                        switch (ch)
+                        {
+                            case '_':
+                                currentState = 14;
+                                break;
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 2;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
                         break;
                     case 15:
+                        switch (ch)
+                        {
+                            case '_':
+                                currentState = 15;
+                                break;
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 4;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
                         break;
                     case 16:
+                        switch (ch)
+                        {
+                            case '_':
+                                currentState = 16;
+                                break;
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                currentState = 6;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
                         break;
                 }
                 System.out.println(ch);
