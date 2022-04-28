@@ -327,6 +327,9 @@ public class FloatPointExpressionPDA
                             case '/':
                                 currentState = 7;
                                 break;
+                            case ')':
+                                currentState = 9;
+                                break;
                             case ' ':
                                 currentState = 10;
                                 break;
@@ -468,6 +471,31 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
+                                break;
+                            default:
+                                currentState = 0;
+                                break;
+                        }
+                        continue stringCheckLoop;
+                    
+                    /*** State 17 is the float and double notation ***/
+                    case 17:
+                        switch (ch)
+                        {
+                            case '+':
+                            case '-':
+                            case '*':
+                            case '/':
+                                currentState = 7;
+                                break;
+                            case ')':
+                                currentState = 9;
+                                break;
+                            case ' ':
+                                currentState = 10;
+                                break;
+                            case 'q':
+                                currentState = 12;
                                 break;
                             default:
                                 currentState = 0;
