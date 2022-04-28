@@ -30,6 +30,7 @@ public class FloatPointExpressionPDA
             int expPos = 0;         //Exponent e position in string
 
             float cToF = 0;
+            float floatToPush = 0;
 
             float expValue = 0;
             boolean expNeg = false;
