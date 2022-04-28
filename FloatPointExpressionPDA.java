@@ -14,7 +14,7 @@ public class FloatPointExpressionPDA
 
         String inputExpr = keyboardInput(kb);
 
-        do
+        mainLoop:do
         {
             inputExpr = inputExpr.toLowerCase();
             int stringSize = inputExpr.length();
