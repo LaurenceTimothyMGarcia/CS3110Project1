@@ -20,7 +20,7 @@ public class FloatPointExpressionPDA
             int stringSize = inputExpr.length();
 
             //Stack to convert the string to float and stack for float fix
-            Stack floatCreate = new Stack<>();
+            Stack<Float> floatCreate = new Stack<>();
             Stack postFix = new Stack<>();
 
             //Trackers
@@ -79,6 +79,8 @@ public class FloatPointExpressionPDA
                                 currentState = 8;
                                 leftPCount++;
                                 break;
+                            case 'q':
+                                break mainLoop;
                             default:
                                 currentState = 0;
                                 break;
