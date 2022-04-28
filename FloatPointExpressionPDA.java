@@ -80,7 +80,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     
                     //State 2 are the digits before .
                     case 2:
@@ -128,7 +128,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     
                     //State 3 is .
                     case 3:
@@ -150,7 +150,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
 
                     //State 4 are the digits after .
                     case 4:
@@ -194,7 +194,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     
                     //State 5 is exponent e
                     case 5:
@@ -220,7 +220,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     //Case 6 are the digits after exponent e
                     case 6:
                         switch (ch)
@@ -258,7 +258,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     
                     //State 7 is the operator state including +, -, *, /
                     case 7:
@@ -289,7 +289,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     
                     //States 8 and 9 are ( and ) respectively
                     case 8:
@@ -317,7 +317,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     case 9:
                         switch (ch)
                         {
@@ -337,7 +337,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     
                     //States 10 and 11 are white space
                     case 10:
@@ -353,7 +353,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     case 11:
                         switch (ch)
                         {
@@ -376,11 +376,11 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     
                     //Final State
                     case 12:
-                        break;
+                        break stringCheckLoop;
                     
                     //Determines if exponent e is positive or negative
                     case 13:
@@ -402,7 +402,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     
                     //States 14, 15, 16 are underlines between digits
                     case 14:
@@ -427,7 +427,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     case 15:
                         switch (ch)
                         {
@@ -450,7 +450,7 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
                     case 16:
                         switch (ch)
                         {
@@ -473,7 +473,11 @@ public class FloatPointExpressionPDA
                                 currentState = 0;
                                 break;
                         }
-                        break;
+                        continue stringCheckLoop;
+                    
+                    //Trash State
+                    case 0:
+                        break stringCheckLoop;
                 }
                 System.out.println(ch);
             }
