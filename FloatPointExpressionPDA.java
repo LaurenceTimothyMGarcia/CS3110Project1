@@ -124,6 +124,10 @@ public class FloatPointExpressionPDA
                             case '_':
                                 currentState = 14;
                                 break;
+                            case 'd':
+                            case 'f':
+                                currentState = 17;
+                                break;
                             default:
                                 currentState = 0;
                                 break;
@@ -145,6 +149,13 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 4;
+                                break;
+                            case 'e':
+                                currentState = 5;
+                                break;
+                            case 'd':
+                            case 'f':
+                                currentState = 17;
                                 break;
                             default:
                                 currentState = 0;
@@ -189,6 +200,10 @@ public class FloatPointExpressionPDA
                                 break;
                             case '_':
                                 currentState = 15;
+                                break;
+                            case 'd':
+                            case 'f':
+                                currentState = 17;
                                 break;
                             default:
                                 currentState = 0;
@@ -253,6 +268,10 @@ public class FloatPointExpressionPDA
                                 break;
                             case '_':
                                 currentState = 16;
+                                break;
+                            case 'd':
+                            case 'f':
+                                currentState = 17;
                                 break;
                             default:
                                 currentState = 0;
