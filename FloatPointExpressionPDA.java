@@ -77,6 +77,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 8;
+                                leftPCount++;
                                 break;
                             default:
                                 currentState = 0;
@@ -116,6 +117,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case ')':
                                 currentState = 9;
+                                rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
@@ -193,6 +195,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case ')':
                                 currentState = 9;
+                                rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
@@ -262,6 +265,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 9;
+                                leftPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
@@ -302,6 +306,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 8;
+                                leftPCount++;
                                 break;
                             case ' ':
                                 currentState = 11;
@@ -333,6 +338,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 8;
+                                leftPCount++;
                                 break;
                             default:
                                 currentState = 0;
@@ -350,6 +356,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case ')':
                                 currentState = 9;
+                                rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
@@ -395,6 +402,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 8;
+                                leftPCount++;
                                 break;
                             default:
                                 currentState = 0;
@@ -507,6 +515,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case ')':
                                 currentState = 9;
+                                rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
