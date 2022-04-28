@@ -20,7 +20,6 @@ public class FloatPointExpressionPDA
             int stringSize = inputExpr.length();
 
             //Stack to convert the string to float and stack for float fix
-            Stack<Float> floatCreate = new Stack<>();
             Stack postFix = new Stack<>();
 
             //Trackers
@@ -54,6 +53,7 @@ public class FloatPointExpressionPDA
                 System.out.println();
                 System.out.println("Current State: " + currentState);
                 System.out.println("Current Char: " + ch);
+                System.out.println("Current Float: " + floatToPush);
 
                 switch (currentState)
                 {
@@ -73,7 +73,6 @@ public class FloatPointExpressionPDA
                             case '9':
                                 currentState = 2;
                                 chToF = charToFloat(ch);
-                                floatCreate.push(chToF);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -107,7 +106,6 @@ public class FloatPointExpressionPDA
                             case '9':
                                 currentState = 2;
                                 chToF = charToFloat(ch);
-                                floatCreate.push(chToF);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -162,7 +160,6 @@ public class FloatPointExpressionPDA
                             case '9':
                                 currentState = 4;
                                 chToF = charToFloat(ch);
-                                floatCreate.push(chToF);
                                 break;
                             case 'e':
                                 currentState = 5;
@@ -193,7 +190,6 @@ public class FloatPointExpressionPDA
                             case '9':
                                 currentState = 4;
                                 chToF = charToFloat(ch);
-                                floatCreate.push(chToF);
                                 break;
                             case 'e':
                                 currentState = 5;
@@ -244,7 +240,6 @@ public class FloatPointExpressionPDA
                             case '9':
                                 currentState = 6;
                                 chToF = charToFloat(ch);
-                                floatCreate.push(chToF);
                                 break;
                             case '+':
                             case '-':
@@ -271,7 +266,6 @@ public class FloatPointExpressionPDA
                             case '9':
                                 currentState = 6;
                                 chToF = charToFloat(ch);
-                                floatCreate.push(chToF);
                                 break;
                             case '+':
                             case '-':
@@ -317,7 +311,6 @@ public class FloatPointExpressionPDA
                             case '9':
                                 currentState = 2;
                                 chToF = charToFloat(ch);
-                                floatCreate.push(chToF);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -556,7 +549,7 @@ public class FloatPointExpressionPDA
                         break stringCheckLoop;
                 }
             }
-            System.out.println(floatCreate);
+            
             inputExpr = keyboardInput(kb);
         } while (inputExpr != "q");
     }
