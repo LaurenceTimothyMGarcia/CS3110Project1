@@ -106,7 +106,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 2;
-                                chToF = charToFloat(ch);
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -160,7 +160,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 4;
-                                chToF = charToFloat(ch);
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             case 'e':
                                 currentState = 5;
@@ -190,7 +190,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 4;
-                                chToF = charToFloat(ch);
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             case 'e':
                                 currentState = 5;
@@ -240,7 +240,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
-                                chToF = charToFloat(ch);
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             case '+':
                             case '-':
@@ -266,7 +266,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
-                                chToF = charToFloat(ch);
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             case '+':
                             case '-':
@@ -311,7 +311,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 2;
-                                chToF = charToFloat(ch);
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -344,6 +344,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 2;
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -411,6 +412,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 4;
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             case '(':
                                 currentState = 8;
@@ -437,6 +439,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             default:
                                 currentState = 0;
@@ -462,6 +465,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 2;
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             default:
                                 currentState = 0;
@@ -485,6 +489,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 4;
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             default:
                                 currentState = 0;
@@ -508,6 +513,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 break;
                             default:
                                 currentState = 0;
