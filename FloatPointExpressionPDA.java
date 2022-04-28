@@ -102,6 +102,8 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 2;
+                                chToF = charToFloat(ch);
+                                floatCreate.push(chToF);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -155,6 +157,8 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 4;
+                                chToF = charToFloat(ch);
+                                floatCreate.push(chToF);
                                 break;
                             case 'e':
                                 currentState = 5;
@@ -184,6 +188,8 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 4;
+                                chToF = charToFloat(ch);
+                                floatCreate.push(chToF);
                                 break;
                             case 'e':
                                 currentState = 5;
@@ -233,6 +239,8 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
+                                chToF = charToFloat(ch);
+                                floatCreate.push(chToF);
                                 break;
                             case '+':
                             case '-':
@@ -258,6 +266,8 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
+                                chToF = charToFloat(ch);
+                                floatCreate.push(chToF);
                                 break;
                             case '+':
                             case '-':
@@ -302,6 +312,8 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 2;
+                                chToF = charToFloat(ch);
+                                floatCreate.push(chToF);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -539,9 +551,8 @@ public class FloatPointExpressionPDA
                     case 0:
                         break stringCheckLoop;
                 }
-                System.out.println(ch);
             }
-
+            System.out.println(floatCreate);
             inputExpr = keyboardInput(kb);
         } while (inputExpr != "q");
     }
