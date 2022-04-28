@@ -36,7 +36,16 @@ public class FloatPointExpressionPDA
 
             while (lenPos <= stringSize)
             {
-                char ch = inputExpr.charAt(lenPos);
+                char ch;
+                if (lenPos < stringSize)
+                {
+                    ch = inputExpr.charAt(lenPos);
+                }
+                else
+                {
+                    ch = '?';
+                }
+
                 lenPos++;
 
                 switch (currentState)
@@ -108,17 +117,12 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 break;
+                            case '?':
+                                currentState = 12;
+                                break;
                             default:
-                                if (lenPos > stringSize)
-                                {
-                                    currentState = 12;
-                                    break;
-                                }
-                                else
-                                {
-                                    currentState = 0;
-                                    break;
-                                }
+                                currentState = 0;
+                                break;
                         }
                         break;
                     
@@ -176,17 +180,12 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 break;
+                            case '?':
+                                currentState = 12;
+                                break;
                             default:
-                                if (lenPos > stringSize)
-                                {
-                                    currentState = 12;
-                                    break;
-                                }
-                                else
-                                {
-                                    currentState = 0;
-                                    break;
-                                }
+                                currentState = 0;
+                                break;
                         }
                         break;
                     
@@ -242,17 +241,12 @@ public class FloatPointExpressionPDA
                                 break;
                             case ' ':
                                 currentState = 10;
+                            case '?':
+                                currentState = 12;
+                                break;
                             default:
-                                if (lenPos > stringSize)
-                                {
-                                    currentState = 12;
-                                    break;
-                                }
-                                else
-                                {
-                                    currentState = 0;
-                                    break;
-                                }
+                                currentState = 0;
+                                break;
                         }
                         break;
                     
@@ -326,17 +320,12 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 break;
+                            case '?':
+                                currentState = 12;
+                                break;
                             default:
-                                if (lenPos > stringSize)
-                                {
-                                    currentState = 12;
-                                    break;
-                                }
-                                else
-                                {
-                                    currentState = 0;
-                                    break;
-                                }
+                                currentState = 0;
+                                break;
                         }
                         break;
                     
@@ -413,6 +402,7 @@ public class FloatPointExpressionPDA
                     case 16:
                         break;
                 }
+                System.out.println(ch);
             }
 
             inputExpr = keyboardInput(kb);
