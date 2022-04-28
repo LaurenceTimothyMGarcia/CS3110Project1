@@ -28,6 +28,8 @@ public class FloatPointExpressionPDA
             int lenPos = 0;         //Position in string
             int decPos = 0;         //Decimal position in string
             int expPos = 0;         //Exponent e position in string
+            int leftPCount = 0;     //Beginning parenthesis count
+            int rightPCount = 0;    //End parenthesis count
 
             float chToF = 0;
             float floatToPush = 0;
@@ -400,10 +402,6 @@ public class FloatPointExpressionPDA
                         }
                         continue stringCheckLoop;
                     
-                    //Final State
-                    case 12:
-                        break stringCheckLoop;
-                    
                     //Determines if exponent e is positive or negative
                     case 13:
                         switch (ch)
@@ -497,7 +495,7 @@ public class FloatPointExpressionPDA
                         }
                         continue stringCheckLoop;
                     
-                    /*** State 17 is the float and double notation ***/
+                    //State 17 is the float and double notation
                     case 17:
                         switch (ch)
                         {
@@ -521,6 +519,10 @@ public class FloatPointExpressionPDA
                                 break;
                         }
                         continue stringCheckLoop;
+
+                    //Final Accept State
+                    case 12:
+                    break stringCheckLoop;
                     
                     //Trash State
                     case 0:
