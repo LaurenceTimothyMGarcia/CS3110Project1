@@ -51,6 +51,10 @@ public class FloatPointExpressionPDA
 
                 lenPos++;
 
+                System.out.println();
+                System.out.println("Current State: " + currentState);
+                System.out.println("Current Char: " + ch);
+
                 switch (currentState)
                 {
                     //State 1 - Starting state
@@ -618,5 +622,41 @@ public class FloatPointExpressionPDA
         {
 
         }
+    }
+
+    /*** Adds the char into the final total ***/
+    public static float floatCreation(int lenPos, int state, int decPos, int expPos, float fixedString, char ch)
+    {
+        switch (state)
+        {
+            case 1: //First digit
+                fixedString = charToFloat(ch);
+                break;
+            case 2: //All digits before the decimal
+                fixedString *= 10;
+                fixedString += charToFloat(ch);
+                break;
+            case 4: //Decimal numbers, after . before e
+                float decNum = 0;
+                float powOf = 1;
+
+                //Divides by how far it is from decimal
+                for (int i = 0; i < (lenPos - decPos); i++)
+                {
+                    powOf /= 10;
+                }
+
+                decNum = charToFloat(ch);
+                decNum *= powOf;
+
+                fixedString += decNum;
+                break;
+            case 6: //Number after the e
+                fixedString *= 10;
+                fixedString += charToFloat(ch);
+                break;
+        }
+
+        return fixedString;
     }
 }
