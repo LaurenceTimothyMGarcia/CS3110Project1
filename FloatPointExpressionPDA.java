@@ -20,6 +20,7 @@ public class FloatPointExpressionPDA
             int stringSize = inputExpr.length();
 
             //Stack to convert the string to float and stack for float fix
+            Stack floatStack = new Stack<>();
             Stack postFix = new Stack<>();
 
             //Trackers
@@ -71,8 +72,8 @@ public class FloatPointExpressionPDA
                             case '7':
                             case '8':
                             case '9':
+                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
                                 currentState = 2;
-                                chToF = charToFloat(ch);
                                 break;
                             case '.':
                                 currentState = 3;
@@ -542,7 +543,7 @@ public class FloatPointExpressionPDA
 
                     //Final Accept State
                     case 12:
-                    break stringCheckLoop;
+                        break stringCheckLoop;
                     
                     //Trash State
                     case 0:
@@ -550,6 +551,9 @@ public class FloatPointExpressionPDA
                 }
             }
             
+            System.out.println("Finished Calculation");
+            System.out.println();
+
             inputExpr = keyboardInput(kb);
         } while (inputExpr != "q");
     }
@@ -618,7 +622,7 @@ public class FloatPointExpressionPDA
     }
 
     /*** Adds the char into the final total ***/
-    public static float floatCreation(int lenPos, int state, int decPos, int expPos, float fixedString, char ch)
+    public static float floatCreation(int lenPos, int state, int decPos, int expPos, float fixedString, char ch, Stack floatStack)
     {
         switch (state)
         {
