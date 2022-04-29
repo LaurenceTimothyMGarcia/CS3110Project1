@@ -28,8 +28,6 @@ public class FloatPointExpressionPDA
             int lenPos = 0;         //Position in string
             int decPos = 0;         //Decimal position in string
             int expPos = 0;         //Exponent e position in string
-            int leftPCount = 0;     //Beginning parenthesis count
-            int rightPCount = 0;    //End parenthesis count
 
             float floatToPush = 0;
 
@@ -88,7 +86,6 @@ public class FloatPointExpressionPDA
                             case '(':
                                 currentState = 8;
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
-                                leftPCount++;
                                 break;
                             case 'q':
                                 break mainLoop;
@@ -141,7 +138,6 @@ public class FloatPointExpressionPDA
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
                                 floatToPush = 0;
-                                rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
@@ -235,7 +231,6 @@ public class FloatPointExpressionPDA
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
                                 floatToPush = 0;
-                                rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
@@ -318,7 +313,6 @@ public class FloatPointExpressionPDA
                             case '(':
                                 currentState = 9;
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
-                                leftPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
@@ -366,7 +360,6 @@ public class FloatPointExpressionPDA
                             case '(':
                                 currentState = 8;
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
-                                leftPCount++;
                                 break;
                             case ' ':
                                 currentState = 11;
@@ -404,7 +397,6 @@ public class FloatPointExpressionPDA
                             case '(':
                                 currentState = 8;
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
-                                leftPCount++;
                                 break;
                             default:
                                 currentState = 0;
@@ -431,7 +423,6 @@ public class FloatPointExpressionPDA
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
                                 floatToPush = 0;
-                                rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
@@ -489,7 +480,6 @@ public class FloatPointExpressionPDA
                             case '(':
                                 currentState = 8;
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
-                                leftPCount++;
                                 break;
                             default:
                                 currentState = 0;
@@ -616,7 +606,6 @@ public class FloatPointExpressionPDA
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
                                 floatToPush = 0;
-                                rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
