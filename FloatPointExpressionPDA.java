@@ -811,15 +811,37 @@ public class FloatPointExpressionPDA
                 ch = operatorStack.pop();
                 opPeek = operatorStack.peek();
 
-                System.out.println(floatStack);
-                System.out.println(operatorStack);
+                System.out.println("Float Stack " + floatStack);
+                System.out.println("Operator Stack " + operatorStack);
+
+                System.out.println("ch " + ch);
+                System.out.println("opPeek " + opPeek);
+
+                if (floatStack.size() <= 1)
+                {
+                    break;
+                }
 
                 switch (opPeek)
                 {
                     case '+':
                         temp2 = floatStack.pop();
                         temp1 = floatStack.pop();
-                        returnValue = temp1 + temp2;
+                        switch (ch)
+                        {
+                            case '+':
+                            case '-':
+                                returnValue = temp1 + temp2;
+
+                                floatStack.push(returnValue);
+                                break;
+                            case '*':
+                            case '/':
+                                returnValue = temp1 * temp2;
+                                floatStack.push(returnValue);
+                                break;
+                        }
+                        
                         break;
                     case '-':
                         switch (ch)
