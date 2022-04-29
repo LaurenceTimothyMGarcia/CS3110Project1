@@ -21,7 +21,7 @@ public class FloatPointExpressionPDA
 
             //Stack to convert the string to float and stack for float fix
             Stack<Float> floatStack = new Stack<>();
-            Stack operatorStack = new Stack<>();
+            Stack<Character> operatorStack = new Stack<>();
 
             //Trackers
             int currentState = 1;   //Keeps track of current state
@@ -31,7 +31,6 @@ public class FloatPointExpressionPDA
             int leftPCount = 0;     //Beginning parenthesis count
             int rightPCount = 0;    //End parenthesis count
 
-            float chToF = 0;
             float floatToPush = 0;
 
             float expValue = 0;
@@ -48,6 +47,8 @@ public class FloatPointExpressionPDA
                 {
                     ch = 'q';
                 }
+
+                System.out.println(inputExpr);
 
                 lenPos++;
 
@@ -123,6 +124,7 @@ public class FloatPointExpressionPDA
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 floatStack.push(floatToPush);
+                                operatorStack.push(ch);
                                 floatToPush = 0;
                                 break;
                             case ')':
@@ -212,6 +214,7 @@ public class FloatPointExpressionPDA
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 floatStack.push(floatToPush);
+                                operatorStack.push(ch);
                                 floatToPush = 0;
                                 break;
                             case ')':
@@ -293,6 +296,7 @@ public class FloatPointExpressionPDA
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 floatStack.push(floatToPush);
+                                operatorStack.push(ch);
                                 floatToPush = 0;
                                 break;
                             case '(':
@@ -396,6 +400,7 @@ public class FloatPointExpressionPDA
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 floatStack.push(floatToPush);
+                                operatorStack.push(ch);
                                 floatToPush = 0;
                                 break;
                             case ')':
@@ -431,6 +436,7 @@ public class FloatPointExpressionPDA
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 floatStack.push(floatToPush);
+                                operatorStack.push(ch);
                                 floatToPush = 0;
                                 break;
                             default:
@@ -572,6 +578,7 @@ public class FloatPointExpressionPDA
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 floatStack.push(floatToPush);
+                                operatorStack.push(ch);
                                 floatToPush = 0;
                                 break;
                             case ')':
@@ -612,6 +619,7 @@ public class FloatPointExpressionPDA
             }
             
             System.out.println(floatStack);
+            System.out.println(operatorStack);
             System.out.println("Finished Calculation");
             System.out.println();
 
