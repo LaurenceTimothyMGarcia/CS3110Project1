@@ -706,12 +706,15 @@ public class FloatPointExpressionPDA
                             break;
                     }
                 }
+
+                System.out.println("Finished Calculation");
+                System.out.println(floatStack.pop());
+            }
+            else
+            {
+                System.out.println("Input not valid");
             }
             
-            System.out.println(floatStack);
-            System.out.println(operatorStack);
-            System.out.println("Finished Calculation");
-            System.out.println(floatStack.pop());
             System.out.println();
 
             inputExpr = keyboardInput(kb);
