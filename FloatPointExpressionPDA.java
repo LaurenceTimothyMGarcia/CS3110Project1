@@ -85,6 +85,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 8;
+                                pemdasStack(floatStack, operatorStack, ch);
                                 leftPCount++;
                                 break;
                             case 'q':
@@ -136,6 +137,7 @@ public class FloatPointExpressionPDA
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 expValue = 0;
                                 floatStack.push(floatToPush);
+                                pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
                                 rightPCount++;
                                 break;
@@ -229,6 +231,7 @@ public class FloatPointExpressionPDA
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 expValue = 0;
                                 floatStack.push(floatToPush);
+                                pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
                                 rightPCount++;
                                 break;
@@ -312,6 +315,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 9;
+                                pemdasStack(floatStack, operatorStack, ch);
                                 leftPCount++;
                                 break;
                             case ' ':
@@ -359,6 +363,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 8;
+                                pemdasStack(floatStack, operatorStack, ch);
                                 leftPCount++;
                                 break;
                             case ' ':
@@ -396,6 +401,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 8;
+                                pemdasStack(floatStack, operatorStack, ch);
                                 leftPCount++;
                                 break;
                             default:
@@ -422,6 +428,7 @@ public class FloatPointExpressionPDA
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 expValue = 0;
                                 floatStack.push(floatToPush);
+                                pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
                                 rightPCount++;
                                 break;
@@ -479,6 +486,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case '(':
                                 currentState = 8;
+                                pemdasStack(floatStack, operatorStack, ch);
                                 leftPCount++;
                                 break;
                             default:
@@ -604,6 +612,7 @@ public class FloatPointExpressionPDA
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 expValue = 0;
                                 floatStack.push(floatToPush);
+                                pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
                                 rightPCount++;
                                 break;
@@ -651,7 +660,6 @@ public class FloatPointExpressionPDA
                         case '+':
                             temp1 = temp1 + temp2;
                             floatStack.push(temp1);
-                            System.out.println("HERE");
                             break;
                         case '-':
                             temp1 = temp1 - temp2;
@@ -747,6 +755,102 @@ public class FloatPointExpressionPDA
 
         opPeek = operatorStack.peek();
 
+        if (ch == ')')
+        {
+            while (opPeek != '(')
+            {
+                ch = operatorStack.pop();
+                opPeek = operatorStack.peek();
+
+                System.out.println(floatStack);
+                System.out.println(operatorStack);
+
+                switch (opPeek)
+                {
+                    case '+':
+                        temp2 = floatStack.pop();
+                        temp1 = floatStack.pop();
+                        returnValue = temp1 + temp2;
+                        break;
+                    case '-':
+                        switch (ch)
+                        {
+                            case '+':
+                            case '-':
+                                temp2 = floatStack.pop();
+                                temp1 = floatStack.pop();
+                                returnValue = temp1 - temp2;
+
+                                floatStack.push(returnValue);
+                                break;
+                            case '*':
+                            case '/':
+                                operatorStack.push(ch);
+                                break;
+                        }
+                        break;
+                    case '*':
+                        switch (ch)
+                        {
+                            case '+':
+                            case '-':
+                            case '*':
+                            case '/':
+                                temp2 = floatStack.pop();
+                                temp1 = floatStack.pop();
+                                returnValue = temp1 * temp2;
+
+                                floatStack.push(returnValue);
+                                //operatorStack.pop();
+                                break;
+                        }
+                        break;
+                    case '/':
+                        switch (ch)
+                        {
+                            case '+':
+                            case '-':
+                            case '*':
+                            case '/':
+                                temp2 = floatStack.pop();
+                                temp1 = floatStack.pop();
+                                returnValue = temp1 / temp2;
+
+                                floatStack.push(returnValue);
+                                //operatorStack.pop();
+                                break;
+                        }
+                        break;
+                    case '(':
+                        temp2 = floatStack.pop();
+                        temp1 = floatStack.pop();
+                        switch (ch)
+                        {
+                            case '+':
+                                returnValue = temp1 + temp2;
+                                floatStack.push(returnValue);
+                                break;
+                            case '-':
+                                returnValue = temp1 - temp2;
+                                floatStack.push(returnValue);
+                                break;
+                            case '*':
+                                returnValue = temp1 * temp2;
+                                floatStack.push(returnValue);
+                                break;
+                            case '/':
+                                returnValue = temp1 / temp2;
+                                floatStack.push(returnValue);
+                                break;
+                        }
+
+                        break;
+                }
+            }
+
+            operatorStack.pop();
+        }
+
         switch (opPeek)
         {
             case '+':
@@ -814,6 +918,7 @@ public class FloatPointExpressionPDA
                 }
                 break;
             case '(':
+                operatorStack.push(ch);
                 break;
         }
     }
