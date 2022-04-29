@@ -419,7 +419,6 @@ public class FloatPointExpressionPDA
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 expValue = 0;
-                                floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
                                 break;
@@ -651,6 +650,11 @@ public class FloatPointExpressionPDA
 
                 while (operatorStack.size() >= 1)
                 {
+                    if (floatStack.size() <= 1)
+                    {
+                        break;
+                    }
+
                     float temp2 = floatStack.pop();
                     float temp1 = floatStack.pop();
 
