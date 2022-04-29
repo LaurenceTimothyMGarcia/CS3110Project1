@@ -641,7 +641,9 @@ public class FloatPointExpressionPDA
                 }
             }
 
-            System.out.println(currentState);
+            System.out.println(floatStack);
+            System.out.println(operatorStack);
+
             if (currentState == 12)
             {
                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
@@ -655,10 +657,17 @@ public class FloatPointExpressionPDA
                         break;
                     }
 
+                    System.out.println(floatStack);
+
                     float temp2 = floatStack.pop();
                     float temp1 = floatStack.pop();
 
+                    System.out.println("Temp 2: " + temp2);
+                    System.out.println("Temp 1: " + temp1);
+
                     char opPop = operatorStack.pop();
+                    System.out.println(floatStack);
+                    System.out.println(opPop);
                     switch (opPop)
                     {
                         case '+':
@@ -670,6 +679,7 @@ public class FloatPointExpressionPDA
                             floatStack.push(temp1);
                             break;
                         case '*':
+                            System.out.println("HERE");
                             temp1 = temp1 * temp2;
                             floatStack.push(temp1);
                             break;
@@ -922,6 +932,10 @@ public class FloatPointExpressionPDA
                 }
                 break;
             case '(':
+                if (ch == ')')
+                {
+                    break;
+                }
                 operatorStack.push(ch);
                 break;
         }
