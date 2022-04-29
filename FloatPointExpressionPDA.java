@@ -363,9 +363,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case ' ':
                                 currentState = 11;
-                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 expValue = 0;
-                                floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 break;
                             default:
@@ -450,9 +448,6 @@ public class FloatPointExpressionPDA
                             case '*':
                             case '/':
                                 currentState = 7;
-                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
-                                expValue = 0;
-                                floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch, pSingleEnd, lenPos, stringSize);
                                 floatToPush = 0;
                                 break;
@@ -474,8 +469,12 @@ public class FloatPointExpressionPDA
                             case '7':
                             case '8':
                             case '9':
-                                currentState = 4;
+                                currentState = 2;
                                 floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
+                                break;
+                            case '.':
+                                currentState = 3;
+                                decPos = lenPos;
                                 break;
                             case '(':
                                 currentState = 8;
