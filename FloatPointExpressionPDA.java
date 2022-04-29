@@ -679,14 +679,54 @@ public class FloatPointExpressionPDA
         return valueReturn;
     }
 
-    /*** Create float and push to postfix stack ***/
-    public static void floatFormation(Stack floatCreate, Stack postFix)
+    /*** Deals with pemdas order of operation ***/
+    public static void pemdasStack(Stack<Float> floatStack, Stack<Character> operatorStack, char ch)
     {
-        
+        char opPeek = operatorStack.peek();
 
-        for (int i = 0; i < floatCreate.size(); i++)
+        switch (opPeek)
         {
-
+            case '+':
+            case '-':
+                switch (ch)
+                {
+                    case '+':
+                    case '-':
+                        break;
+                    case '*':
+                    case '/':
+                        break;
+                    case '(':
+                        break;
+                }
+                break;
+            case '*':
+            case '/':
+                switch (ch)
+                {
+                    case '+':
+                    case '-':
+                        break;
+                    case '*':
+                    case '/':
+                        break;
+                    case '(':
+                        break;
+                }
+                break;
+            case '(':
+                switch (ch)
+                {
+                    case '+':
+                    case '-':
+                        break;
+                    case '*':
+                    case '/':
+                        break;
+                    case '(':
+                        break;
+                }
+                break;
         }
     }
 
