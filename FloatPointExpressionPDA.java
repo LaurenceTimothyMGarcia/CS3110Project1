@@ -121,13 +121,16 @@ public class FloatPointExpressionPDA
                             case '*':
                             case '/':
                                 currentState = 7;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             case ')':
                                 currentState = 9;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             case 'q':
                                 currentState = 12;
@@ -201,13 +204,16 @@ public class FloatPointExpressionPDA
                             case '*':
                             case '/':
                                 currentState = 7;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             case ')':
                                 currentState = 9;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             case 'q':
                                 currentState = 12;
@@ -273,6 +279,7 @@ public class FloatPointExpressionPDA
                             case '*':
                             case '/':
                                 currentState = 7;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             case '(':
                                 currentState = 9;
@@ -280,6 +287,8 @@ public class FloatPointExpressionPDA
                                 break;
                             case ' ':
                                 currentState = 10;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                break;
                             case 'q':
                                 currentState = 12;
                                 break;
@@ -322,6 +331,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case ' ':
                                 currentState = 11;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             default:
                                 currentState = 0;
@@ -366,13 +376,16 @@ public class FloatPointExpressionPDA
                             case '*':
                             case '/':
                                 currentState = 7;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             case ')':
                                 currentState = 9;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             case 'q':
                                 currentState = 12;
@@ -392,6 +405,7 @@ public class FloatPointExpressionPDA
                             case '*':
                             case '/':
                                 currentState = 7;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             default:
                                 currentState = 0;
@@ -530,13 +544,16 @@ public class FloatPointExpressionPDA
                             case '*':
                             case '/':
                                 currentState = 7;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             case ')':
                                 currentState = 9;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 rightPCount++;
                                 break;
                             case ' ':
                                 currentState = 10;
+                                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                                 break;
                             case 'q':
                                 currentState = 12;
@@ -557,8 +574,6 @@ public class FloatPointExpressionPDA
                 }
             }
             
-            floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
-            System.out.println(floatToPush);
             System.out.println("Finished Calculation");
             System.out.println();
 
