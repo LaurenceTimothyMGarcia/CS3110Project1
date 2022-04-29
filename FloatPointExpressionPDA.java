@@ -36,6 +36,8 @@ public class FloatPointExpressionPDA
             float expValue = 0;
             boolean expNeg = false;
 
+            boolean pSingleEnd = false;
+
             stringCheckLoop: while (lenPos <= stringSize)
             {
                 char ch;
@@ -440,6 +442,7 @@ public class FloatPointExpressionPDA
                                 break;
                             case 'q':
                                 currentState = 12;
+                                System.out.println("q" + operatorStack);
                                 break;
                             default:
                                 currentState = 0;
@@ -648,7 +651,7 @@ public class FloatPointExpressionPDA
             {
                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                 expValue = 0;
-                floatStack.push(floatToPush);
+                floatStack.push(floatToPush);//Problem child
 
                 while (operatorStack.size() >= 1)
                 {
