@@ -735,7 +735,7 @@ public class FloatPointExpressionPDA
         String inputString = "";
 
         System.out.println("Input String here (Type in q to quit): ");
-        inputString = kb.next();
+        inputString = kb.nextLine();
 
         return inputString;
     }
