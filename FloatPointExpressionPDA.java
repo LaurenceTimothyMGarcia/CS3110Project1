@@ -663,12 +663,16 @@ public class FloatPointExpressionPDA
 
                 if (operatorStack.size() > 1)
                 {
-                    paraEnd = operatorStack.pop();
-                    paraBegCheck = operatorStack.peek();
-                    if (paraEnd == ')' && paraBegCheck == '(')
+                    paraEnd = operatorStack.peek();
+                    if (paraEnd == ')')
                     {
-                        floatStack.pop();
-                        operatorStack.pop();
+                        paraEnd = operatorStack.pop();
+                        paraBegCheck = operatorStack.peek();
+                        if (paraEnd == ')' && paraBegCheck == '(')
+                        {
+                            floatStack.pop();
+                            operatorStack.pop();
+                        }
                     }
                 }
 
