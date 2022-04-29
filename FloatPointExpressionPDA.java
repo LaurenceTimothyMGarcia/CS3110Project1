@@ -51,17 +51,7 @@ public class FloatPointExpressionPDA
                     ch = 'q';
                 }
 
-                System.out.println(inputExpr);
-
                 lenPos++;
-
-                System.out.println();
-                System.out.println("Current State: " + currentState);
-                System.out.println("Current Char: " + ch);
-                System.out.println("Current Float: " + floatToPush);
-
-                System.out.println(floatStack);
-                System.out.println(operatorStack);
 
                 switch (currentState)
                 {
@@ -441,7 +431,6 @@ public class FloatPointExpressionPDA
                                 break;
                             case 'q':
                                 currentState = 12;
-                                System.out.println("q" + operatorStack);
                                 break;
                             default:
                                 currentState = 0;
@@ -644,9 +633,6 @@ public class FloatPointExpressionPDA
                 }
             }
 
-            System.out.println(floatStack);
-            System.out.println(operatorStack);
-
             //Adds the rest of the operations
             if (currentState == 12 && pLeftCount == pRightCount)
             {
@@ -656,7 +642,6 @@ public class FloatPointExpressionPDA
                 floatStack.push(floatToPush);
 
                 char paraEnd;
-                System.out.println("OPERATOR STACK " + operatorStack);
                 char paraBegCheck;
 
                 //Checks if the last number is (#)
@@ -675,8 +660,6 @@ public class FloatPointExpressionPDA
                     }
                 }
 
-                System.out.println("OPERATOR STACK " + operatorStack);
-
                 //Keeps adding the rest of the floats
                 while (operatorStack.size() >= 1)
                 {
@@ -685,17 +668,10 @@ public class FloatPointExpressionPDA
                         break;
                     }
 
-                    System.out.println(floatStack);
-
                     float temp2 = floatStack.pop();
                     float temp1 = floatStack.pop();
 
-                    System.out.println("Temp 2: " + temp2);
-                    System.out.println("Temp 1: " + temp1);
-
                     char opPop = operatorStack.pop();
-                    System.out.println(floatStack);
-                    System.out.println(opPop);
                     switch (opPop)
                     {
                         case '+':
@@ -707,7 +683,6 @@ public class FloatPointExpressionPDA
                             floatStack.push(temp1);
                             break;
                         case '*':
-                            System.out.println("HERE");
                             temp1 = temp1 * temp2;
                             floatStack.push(temp1);
                             break;
@@ -815,12 +790,6 @@ public class FloatPointExpressionPDA
             {
                 ch = operatorStack.pop();
                 opPeek = operatorStack.peek();
-
-                System.out.println("Float Stack " + floatStack);
-                System.out.println("Operator Stack " + operatorStack);
-
-                System.out.println("ch " + ch);
-                System.out.println("opPeek " + opPeek);
 
                 if (floatStack.size() <= 1)
                 {
