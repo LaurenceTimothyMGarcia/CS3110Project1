@@ -642,14 +642,13 @@ public class FloatPointExpressionPDA
                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
                 expValue = 0;
 
-                
-
-                floatStack.push(floatToPush);//Problem child - (#) at end places 0.0 to stack
+                floatStack.push(floatToPush);
 
                 char paraEnd;
                 System.out.println("OPERATOR STACK " + operatorStack);
                 char paraBegCheck;
 
+                //Checks if the last number is (#)
                 if (operatorStack.size() > 1)
                 {
                     paraEnd = operatorStack.peek();
@@ -667,6 +666,7 @@ public class FloatPointExpressionPDA
 
                 System.out.println("OPERATOR STACK " + operatorStack);
 
+                //Keeps adding the rest of the floats
                 while (operatorStack.size() >= 1)
                 {
                     if (floatStack.size() <= 1)
@@ -789,6 +789,7 @@ public class FloatPointExpressionPDA
 
         opPeek = operatorStack.peek();
 
+        //Checks if last value is (#)
         if (ch == ')' && opPeek == '(' && (lenPos == stringSize))
         {
             operatorStack.push(ch);
@@ -796,6 +797,7 @@ public class FloatPointExpressionPDA
             return;
         }
 
+        //Deals with paraenthesis part of pemdas
         if (ch == ')')
         {
             while (opPeek != '(')
@@ -914,6 +916,7 @@ public class FloatPointExpressionPDA
             operatorStack.pop();
         }
 
+        //Primary check and operation
         switch (opPeek)
         {
             case '+':
