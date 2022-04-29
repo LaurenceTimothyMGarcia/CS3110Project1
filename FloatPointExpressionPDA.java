@@ -126,6 +126,7 @@ public class FloatPointExpressionPDA
                             case '/':
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
@@ -133,6 +134,7 @@ public class FloatPointExpressionPDA
                             case ')':
                                 currentState = 9;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 rightPCount++;
@@ -140,6 +142,7 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 break;
@@ -216,6 +219,7 @@ public class FloatPointExpressionPDA
                             case '/':
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
@@ -223,6 +227,7 @@ public class FloatPointExpressionPDA
                             case ')':
                                 currentState = 9;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 rightPCount++;
@@ -230,6 +235,7 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 break;
@@ -266,8 +272,9 @@ public class FloatPointExpressionPDA
                                 currentState = 6;
                                 expValue = floatCreation(lenPos, currentState, decPos, expPos, expValue, ch, floatStack);
                                 break;
-                            case '+':
                             case '-':
+                                expNeg = true;
+                            case '+':
                                 currentState = 13;
                                 break;
                             default:
@@ -298,6 +305,7 @@ public class FloatPointExpressionPDA
                             case '/':
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
@@ -309,6 +317,7 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 break;
@@ -355,6 +364,7 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 11;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 break;
@@ -402,6 +412,7 @@ public class FloatPointExpressionPDA
                             case '/':
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
@@ -409,6 +420,7 @@ public class FloatPointExpressionPDA
                             case ')':
                                 currentState = 9;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 rightPCount++;
@@ -416,6 +428,7 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 break;
@@ -438,6 +451,7 @@ public class FloatPointExpressionPDA
                             case '/':
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
@@ -580,6 +594,7 @@ public class FloatPointExpressionPDA
                             case '/':
                                 currentState = 7;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 pemdasStack(floatStack, operatorStack, ch);
                                 floatToPush = 0;
@@ -587,6 +602,7 @@ public class FloatPointExpressionPDA
                             case ')':
                                 currentState = 9;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 rightPCount++;
@@ -594,6 +610,7 @@ public class FloatPointExpressionPDA
                             case ' ':
                                 currentState = 10;
                                 floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                                expValue = 0;
                                 floatStack.push(floatToPush);
                                 floatToPush = 0;
                                 break;
@@ -619,6 +636,8 @@ public class FloatPointExpressionPDA
             System.out.println(currentState);
             if (currentState == 12)
             {
+                floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+                expValue = 0;
                 floatStack.push(floatToPush);
 
                 while (operatorStack.size() >= 1)
