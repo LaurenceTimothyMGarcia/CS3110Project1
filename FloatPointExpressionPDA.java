@@ -21,7 +21,7 @@ public class FloatPointExpressionPDA
 
             //Stack to convert the string to float and stack for float fix
             Stack floatStack = new Stack<>();
-            Stack postFix = new Stack<>();
+            Stack operatorStack = new Stack<>();
 
             //Trackers
             int currentState = 1;   //Keeps track of current state
@@ -625,6 +625,39 @@ public class FloatPointExpressionPDA
         {
 
         }
+    }
+
+    /*** Adds any Exponent e values to the float ***/
+    public static float floatExponentAdd(float floatToPush, boolean expNeg, float expValue)
+    {
+        if (expNeg) //Checks if e was negative
+        {
+            expValue *= -1;
+        }
+
+        if (expValue != 0)  //adds the exp to the final float
+        {
+            float exp10 = 1;
+
+            if (expValue > 0)
+            {
+                for (int i = 0; i < expValue; i++)
+                {
+                    exp10 *= 10;
+                }
+            }
+            else
+            {
+                for (int i = 0; i > expValue; i--)
+                {
+                    exp10 /= 10;
+                }
+            }
+
+            floatToPush *= exp10;
+        }
+
+        return floatToPush;
     }
 
     /*** Adds the char into the final total ***/
