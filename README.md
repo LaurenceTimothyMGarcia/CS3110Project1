@@ -15,14 +15,16 @@ The first one has float validation from the DFA, with the alphabet of the follow
 
 The second one is a simplier design without the float validation of the DFA, with an alphabet of the following symbols
 
-The PDA that I created comprises of 12 states, with one being a trash state and 4 accept states. The following image is the PDA I created.
-![alt text](https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/main/Images/DFA_Drawn.jpg)
+The first PDA that I created comprises of 17 states, with 1 accept state. The following image is the first PDA I created.
+![alt text]()
 Same PDA recreated in JFlaps, which the file for can be found here: https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/main/CS3110Project1.jff
 
-![alt text](https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/main/Images/DFA_JFLAPS.png)
+![alt text]()
+
+The second PDA I created comprises of x states, with 1 accept state. The following image is the second PDA i created.
 
 # Programming the PDA
-Code FloatPointExpressionPDA.java: 
+Code FloatPointExpressionPDA.java: https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/Project2/FloatPointExpressionPDA.java
 
 
 
