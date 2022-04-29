@@ -240,7 +240,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
-                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
+                                expValue = floatCreation(lenPos, currentState, decPos, expPos, expValue, ch, floatStack);
                                 break;
                             case '+':
                             case '-':
@@ -266,7 +266,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
-                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
+                                expValue = floatCreation(lenPos, currentState, decPos, expPos, expValue, ch, floatStack);
                                 break;
                             case '+':
                             case '-':
@@ -439,7 +439,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
-                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
+                                expValue = floatCreation(lenPos, currentState, decPos, expPos, expValue, ch, floatStack);
                                 break;
                             default:
                                 currentState = 0;
@@ -513,7 +513,7 @@ public class FloatPointExpressionPDA
                             case '8':
                             case '9':
                                 currentState = 6;
-                                floatToPush = floatCreation(lenPos, currentState, decPos, expPos, floatToPush, ch, floatStack);
+                                expValue = floatCreation(lenPos, currentState, decPos, expPos, expValue, ch, floatStack);
                                 break;
                             default:
                                 currentState = 0;
@@ -557,6 +557,8 @@ public class FloatPointExpressionPDA
                 }
             }
             
+            floatToPush = floatExponentAdd(floatToPush, expNeg, expValue);
+            System.out.println(floatToPush);
             System.out.println("Finished Calculation");
             System.out.println();
 
