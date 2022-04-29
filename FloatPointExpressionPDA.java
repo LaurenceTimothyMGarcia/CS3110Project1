@@ -57,6 +57,9 @@ public class FloatPointExpressionPDA
                 System.out.println("Current Char: " + ch);
                 System.out.println("Current Float: " + floatToPush);
 
+                System.out.println(floatStack);
+                System.out.println(operatorStack);
+
                 switch (currentState)
                 {
                     //State 1 - Starting state
@@ -613,38 +616,44 @@ public class FloatPointExpressionPDA
                 }
             }
 
+            System.out.println(currentState);
             if (currentState == 12)
             {
                 floatStack.push(floatToPush);
 
-                float temp2 = floatStack.pop();
-                float temp1 = floatStack.pop();
-
-                char opPop = operatorStack.pop();
-                switch (opPop)
+                while (operatorStack.size() >= 1)
                 {
-                    case '+':
-                        temp1 = temp1 + temp2;
-                        floatStack.push(temp1);
-                        break;
-                    case '-':
-                        temp1 = temp1 - temp2;
-                        floatStack.push(temp1);
-                        break;
-                    case '*':
-                        temp1 = temp1 * temp2;
-                        floatStack.push(temp1);
-                        break;
-                    case '/':
-                        temp1 = temp1 / temp2;
-                        floatStack.push(temp1);
-                        break;
+                    float temp2 = floatStack.pop();
+                    float temp1 = floatStack.pop();
+
+                    char opPop = operatorStack.pop();
+                    switch (opPop)
+                    {
+                        case '+':
+                            temp1 = temp1 + temp2;
+                            floatStack.push(temp1);
+                            System.out.println("HERE");
+                            break;
+                        case '-':
+                            temp1 = temp1 - temp2;
+                            floatStack.push(temp1);
+                            break;
+                        case '*':
+                            temp1 = temp1 * temp2;
+                            floatStack.push(temp1);
+                            break;
+                        case '/':
+                            temp1 = temp1 / temp2;
+                            floatStack.push(temp1);
+                            break;
+                    }
                 }
             }
             
             System.out.println(floatStack);
             System.out.println(operatorStack);
             System.out.println("Finished Calculation");
+            System.out.println(floatStack.pop());
             System.out.println();
 
             inputExpr = keyboardInput(kb);
@@ -741,6 +750,7 @@ public class FloatPointExpressionPDA
                         operatorStack.push(ch);
                         break;
                     case '(':
+                        operatorStack.push(ch);
                         break;
                 }
                 break;
@@ -756,9 +766,11 @@ public class FloatPointExpressionPDA
                         returnValue = temp1 * temp2;
 
                         floatStack.push(returnValue);
+                        operatorStack.pop();
                         operatorStack.push(ch);
                         break;
                     case '(':
+                        operatorStack.push(ch);
                         break;
                 }
                 break;
@@ -774,24 +786,15 @@ public class FloatPointExpressionPDA
                         returnValue = temp1 / temp2;
 
                         floatStack.push(returnValue);
+                        operatorStack.pop();
                         operatorStack.push(ch);
                         break;
                     case '(':
+                        operatorStack.push(ch);
                         break;
                 }
                 break;
             case '(':
-                switch (ch)
-                {
-                    case '+':
-                    case '-':
-                        break;
-                    case '*':
-                    case '/':
-                        break;
-                    case '(':
-                        break;
-                }
                 break;
         }
     }
