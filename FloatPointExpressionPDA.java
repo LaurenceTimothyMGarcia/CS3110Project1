@@ -509,7 +509,7 @@ public class FloatPointExpressionPDA
                         }
                         continue stringCheckLoop;
                     
-                    //States 14, 15, 16 are underlines between digits
+                    //States 14, 15, 16 are underscores between digits
                     case 14:
                         switch (ch)
                         {
