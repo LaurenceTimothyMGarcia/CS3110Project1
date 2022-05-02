@@ -53,6 +53,10 @@ public class FloatPointExpressionPDA
 
                 lenPos++;
 
+                System.out.println("Character here " + ch);
+                System.out.println("FLOAT STACK: " + floatStack);
+                System.out.println("OPERATOR STACK: " + operatorStack);
+
                 switch (currentState)
                 {
                     //State 1 - Starting state
@@ -767,7 +771,7 @@ public class FloatPointExpressionPDA
         float temp2;
         float returnValue;
 
-        if (operatorStack.size() <= 0)
+        if (operatorStack.size() <= 0 || floatStack.size() <= 1)
         {
             operatorStack.push(ch);
             return;
