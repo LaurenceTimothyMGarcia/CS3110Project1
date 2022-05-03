@@ -56,6 +56,7 @@ public class FloatPointExpressionPDA
                 System.out.println("Character here " + ch);
                 System.out.println("FLOAT STACK: " + floatStack);
                 System.out.println("OPERATOR STACK: " + operatorStack);
+                System.out.println("FLOAT TO PUSH: " + floatToPush);
 
                 switch (currentState)
                 {
@@ -672,10 +673,27 @@ public class FloatPointExpressionPDA
                         break;
                     }
 
+                    System.out.println("FLOAT STACK: " + floatStack);
+                    System.out.println("OPERATOR STACK: " + operatorStack);
+                    
                     float temp2 = floatStack.pop();
                     float temp1 = floatStack.pop();
 
+                    System.out.println("TEMP 2: " + temp2);
+                    System.out.println("TEMP 1: " + temp1);
+
+                    System.out.println("FLOAT STACK: " + floatStack);
+                    System.out.println("OPERATOR STACK: " + operatorStack);
+
                     char opPop = operatorStack.pop();
+
+                    //Checks for case if an extra 0 is added at the end
+                    if (temp2 == 0 && (opPop == '+' || opPop == '-') && floatStack.size() > 0)
+                    {
+                        temp2 = temp1;
+                        temp1 = floatStack.pop();
+                    }
+
                     switch (opPop)
                     {
                         case '+':
@@ -771,7 +789,7 @@ public class FloatPointExpressionPDA
         float temp2;
         float returnValue;
 
-        if (operatorStack.size() <= 0 || floatStack.size() <= 1)
+        if (operatorStack.size() <= 0)
         {
             operatorStack.push(ch);
             return;
@@ -898,6 +916,7 @@ public class FloatPointExpressionPDA
             }
 
             operatorStack.pop();
+            return;
         }
 
         //Primary check and operation
