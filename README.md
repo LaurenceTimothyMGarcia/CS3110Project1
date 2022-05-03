@@ -2,6 +2,9 @@
 # By Laurence Timothy M. Garcia
 The second project in CS 3110 involved creating a PDA system that recognizes any Java decimal floating point expressions.
 
+All code for Project 2 can be found in FloatPointExpressionPDA.java: 
+https://github.com/LaurenceTimothyMGarcia/CS3110Project1/blob/Project2/FloatPointExpressionPDA.java
+
 # PDA
 I started by drawing out 2 PDAs. 
 
