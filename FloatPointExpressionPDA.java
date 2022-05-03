@@ -53,11 +53,6 @@ public class FloatPointExpressionPDA
 
                 lenPos++;
 
-                System.out.println("Character here " + ch);
-                System.out.println("FLOAT STACK: " + floatStack);
-                System.out.println("OPERATOR STACK: " + operatorStack);
-                System.out.println("FLOAT TO PUSH: " + floatToPush);
-
                 switch (currentState)
                 {
                     //State 1 - Starting state
@@ -672,23 +667,15 @@ public class FloatPointExpressionPDA
                     {
                         break;
                     }
-
-                    System.out.println("FLOAT STACK: " + floatStack);
-                    System.out.println("OPERATOR STACK: " + operatorStack);
                     
                     float temp2 = floatStack.pop();
                     float temp1 = floatStack.pop();
-
-                    System.out.println("TEMP 2: " + temp2);
-                    System.out.println("TEMP 1: " + temp1);
-
-                    System.out.println("FLOAT STACK: " + floatStack);
-                    System.out.println("OPERATOR STACK: " + operatorStack);
+                    float result;
 
                     char opPop = operatorStack.pop();
 
                     //Checks for case if an extra 0 is added at the end
-                    if (temp2 == 0 && (opPop == '+' || opPop == '-') && floatStack.size() > 0)
+                    if (temp2 == 0 && floatStack.size() > 0)
                     {
                         temp2 = temp1;
                         temp1 = floatStack.pop();
@@ -697,24 +684,34 @@ public class FloatPointExpressionPDA
                     switch (opPop)
                     {
                         case '+':
-                            temp1 = temp1 + temp2;
-                            floatStack.push(temp1);
+                            result = temp1 + temp2;
+                            floatStack.push(result);
                             break;
                         case '-':
-                            temp1 = temp1 - temp2;
-                            floatStack.push(temp1);
+                            result = temp1 - temp2;
+                            floatStack.push(result);
                             break;
                         case '*':
-                            temp1 = temp1 * temp2;
-                            floatStack.push(temp1);
+                            result = temp1 * temp2;
+                            floatStack.push(result);
                             break;
                         case '/':
-                            temp1 = temp1 / temp2;
-                            floatStack.push(temp1);
+                            result = temp1 / temp2;
+                            floatStack.push(result);
                             break;
                     }
                 }
 
+                if (floatStack.size() > 1)
+                {
+                    float temp2 = floatStack.pop();
+                    float temp1 = floatStack.pop();
+
+                    float result = temp1 + temp2;
+
+                    floatStack.push(result);
+                }
+                
                 System.out.println("Finished Calculation");
                 System.out.println(floatStack.pop());
             }
